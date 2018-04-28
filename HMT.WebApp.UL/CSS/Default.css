@@ -1,0 +1,138 @@
+﻿
+/**/
+.quickLinks img{
+    height: 60px;
+    width:  60px;
+} 
+
+
+.headerContent {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: 50px;
+}
+
+.title {
+    text-align:center;
+    grid-column: 1/8;
+    grid-row: span 2;
+    height: 100px;
+}
+
+.search {
+    grid-column: span 2;
+    grid-row: span 2;
+    line-height: 100px;
+    padding-left:5px;
+    padding-right:5px;
+    
+}
+
+.searchBar {
+    width:100%; 
+    border-radius:8px;
+    font-size: var(--commonFontSize);
+}
+
+/*positions the navigation bar to the top right corner*/
+.quickLinks {
+    padding: 20px 20px;
+    grid-row: span 2;
+}
+
+.categories {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    background-color: #131F27;
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: 50px;
+}
+
+.category {
+    font-size: var(--headingFontSize);
+    grid-column: span 2;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+}
+
+.hoverable {
+    border-radius: 10px 10px 0 0;
+    background-color: #DDD;
+}
+
+.hoverable:hover {
+    background-color: #B8B8B8;
+    border-radius: 10px 10px 0 0;
+}
+
+#login {
+    grid-column: 9/11;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.headerLink{
+    text-decoration:none;
+}
+
+.footerContent{
+    background-color:#DDD;
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-auto-rows: 350px;
+    grid-gap: 10px;
+}
+
+.startCol{
+    grid-column:2/5;
+}
+
+.column{
+    grid-column: span 3;
+
+}
+
+.columnHeading {
+    font-size: var(--headingFontSize);
+}
+
+.linkWrapper {
+    font-size: var(--commonFontSize);
+    display: flex;
+    flex-direction:column;
+    height:30px;
+    flex-wrap:wrap;
+    margin: 2px 0;
+    line-height: 30px;
+}
+
+.cardfooter {
+    font-size: var(--commonFontSize);
+}
+
+.dropdown-content {
+    position: absolute;
+    left: 8px;
+    top: 238px;
+    width: calc(100% - 22px);
+    background-color: white;
+    display: none;
+    grid-template-columns: repeat(11, 1fr);
+    grid-auto-rows: 300px;
+    grid-gap: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: grid;
+}
+
+
+

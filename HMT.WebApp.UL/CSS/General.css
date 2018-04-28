@@ -1,0 +1,27 @@
+﻿:root {
+    --pageHeadingFontSize: 40px;
+    --headingFontSize: 25px;
+    --commonFontSize: 20px;
+    --smallerFontSize: 18px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.fillParent {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.productContent {
+    margin-bottom: 300px;
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-auto-rows: 350px;
+    grid-gap: 10px;
+
+}
+

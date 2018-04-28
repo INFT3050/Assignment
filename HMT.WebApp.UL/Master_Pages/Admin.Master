@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="HMT.WebApp.UL.Master_Pages.Admin" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Admin:AUS Fashion</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/Admin.css" />
+    <link rel="stylesheet" type="text/css" href="../CSS/General.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        
+        <div class="header">
+            <p class="heading">Admin: AUS Fashion</p>
+            <asp:Label ID="greeting" runat="server" CssClass="heading2"><%:Session["greeting"]%></asp:Label>
+            <div class="signOut">
+                <asp:Button id="signOut" CssClass="fillParent btn" onclick="SignOut_Click" runat="server" Text="Sign Out" />
+            </div>
+        </div>
+        <div class="leftNavigation">
+            <ul class="flexContainer">
+                <li><a href="../Admin_EditProducts.aspx">Edit Products</a></li>
+                <li><a href="../Admin_EditCustomer.aspx">Edit Customers</a></li>
+                <li><a href="../Admin_EditTransactions.aspx">Edit transactions</a></li>
+            </ul>
+        </div>
+        <div class="mainContent">
+            <asp:ContentPlaceHolder ID="contentplaceholder1" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,152 @@
+﻿/*grid*/
+.grid {
+    grid-column:1/12;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows:100px;
+    grid-gap: 1rem;
+}
+
+.wholeRow {
+    grid-column: span 12;
+}
+
+.cell {
+    background-color: yellow;
+    grid-column: span 4;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 100px;
+    grid-gap: 1rem;
+}
+
+.textOverlay {
+    background: rgba(19, 31, 39, 0.6);
+    color: white;
+    grid-row: 2/4;
+    grid-column: 3/6;
+    text-align: center;
+}
+    .textOverlay > p {
+        font-size: var(--pageHeadingFontSize);
+    }
+
+.wrapperButton{
+    grid-row:5/5;
+}
+
+.button {
+    background: rgba(221, 221, 221, 0.7); /* Sets colour and transparency */
+    text-align: center;
+    width: 70%;
+    height: 50%;
+    font-size: var(--headingFontSize);
+    line-height: 50px;
+    border-radius: 10px 10px;
+}
+
+.button:hover, .textOverlay:hover {
+    background: rgba(221, 221, 221, 0.9);
+}
+
+.shopWomen{
+    grid-column:3/6;
+}
+
+.shopMen{
+    grid-column: 6/9;
+}
+
+.bigImg {
+    background-image:url("../Images/big_image1.jpg");
+    background-position:top right;
+    grid-row: span 6;
+    background-size: cover;
+}
+
+.navigation {
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap:20px;
+}
+    .navigation > div {
+        background: rgba(19, 31, 39, 0.7);
+        color: white;
+        text-align: center;
+        font-size: var(--headingFontSize);
+    }
+
+    .navigation > div:hover {
+        background-color: silver;
+    }
+
+
+.item {
+    grid-column: span 4;
+    grid-row: span 4;
+    text-align: center;
+}
+
+.label {
+    background: rgba(19, 31, 39, 0.7);
+    color: white;
+    text-align: center;
+
+}
+
+.toTop {
+    text-align: center;
+    font-size: var(--commonFontSize);
+    background-color: #131F27;
+    color: white;
+    line-height: 100px;
+}
+
+.specials {
+    /*/width:100%;*/
+    
+    height: calc(100% - 35px);
+}
+
+.caption {
+    font-size: var(--headingFontSize);
+    margin: 5px 0;
+}
+
+
+/* Following are specified images to display as background with specialised formatting for each */
+.i1 {
+    background: url("../Images/image1.jpg") no-repeat center 25%;
+    background-size: contain;
+    background-size: auto 100%;
+}
+
+.i2 {
+    background: url("../Images/image2.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.i3 {
+    background: url("../Images/image3.jpg") no-repeat center bottom;
+    background-size: auto 100%;
+}
+
+.i4 {
+    background: url("../Images/image4.jpg") no-repeat center bottom;
+    background-size: auto 100%;
+}
+
+.i5 {
+    background: url("../Images/image5.jpg") no-repeat center center;
+    background-size: contain;
+    background-size: auto 100%;
+}
+
+.i6 {
+    background: url("../Images/image7.jpg") no-repeat center center;
+    background-size: contain;
+    background-size: auto 100%;
+}

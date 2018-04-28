@@ -1,0 +1,240 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.master.cs" Inherits="HMT.WebApp.UL.Master_Pages.Default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../CSS/Default.css" />
+    <link rel="stylesheet" type="text/css" href="../CSS/General.css" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <a name="top"></a>
+        
+        <div class="headerContent">
+
+            <!-- Page title -->
+            
+            <div style="grid-column: span 12;">
+                <asp:Label ID="greeting" runat="server"><%:Session["greeting"]%></asp:Label>
+            </div>
+
+            <div class="title">
+                <h1 style="font-size:50px;">AUS Fashion</h1>
+            </div>
+            
+            
+
+            <!-- Additional helpful links using images similar to other websites to provide user familiarity -->
+            <div class="search">
+                <asp:TextBox runat="server" placeholder="Search..." CssClass="searchBar"></asp:TextBox>
+            </div>
+            <div class="quickLinks">
+                    <a href="../Account.aspx"><img alt="account" title="My Account" src="images/person.jpg"/></a>
+            </div>  
+            <div class="quickLinks">
+                    <a href="../Wishlist.aspx"><img alt="wishlist" title="My Wishlist" src="images/wishlist.jpg" /></a>
+            </div>
+            <div class="quickLinks">                
+                    <a href="../Cart.aspx"><img alt="cart" title="My Shopping Cart" src="images/cart2.png" /></a>
+            </div>
+
+            <!-- Main naviagation menu with dropdown menu items -->
+            <div class="categories">
+                <!-- Useful home page link -->
+                <div title="Aus Fashion Home" class="category hoverable">
+                    <a class ="headerLink fillParent" href="../Default.aspx">Home</a>
+                </div>
+
+                <!-- Dropdown menu advertised to women -->
+                <div title="Women's Clothing" class=" category dropdown hoverable">
+                    Women's Clothing
+                    <div class="dropdown-content" style="background-color:lightgrey; border:double;">
+                        <div class="startCol">
+                            <div class="columnHeading">
+                                <h3>Trending</h3>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../Womens_Tees.aspx">Women's</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="#">Dresses</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="#">Coats and jackets</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="#">jumpsuits</a>
+                            </div>
+                        </div>
+                        <div class="column"><!--
+                            <div class="columnHeading">
+                                <h3>Bottom half</h3>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../Help.aspx">Women's Pants</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../StoreLocations.aspx">Jeans</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../Contact.aspx">Tights</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../ReturnPolicy.aspx">Skirts</a>
+                            </div>-->
+                        </div>
+                        <div class="column"><!--
+                            <div class="columnHeading">
+                                <h3>Middle half and stuff</h3>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../Help.aspx">Intimates</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../StoreLocations.aspx">Sleepwear</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../Contact.aspx">Swimwear</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../ReturnPolicy.aspx">Activewear</a>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dropdown menu advertised to men -->
+                <div title="Men's Clothing" class="category dropdown hoverable">
+                    Men's Clothing
+                    <div class="dropdown-content" style="background-color:lightgrey; border:double;">
+                        <div class="startCol">
+                            <div class="columnHeading">
+                                <h3>Trending</h3>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../MensTees.aspx">Men's shirts</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="#">Jeans</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="#">Headwear</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="#">Boots</a>
+                            </div>
+                        </div>
+                        <div class="column"><!--
+                            <div class="columnHeading">
+                                <h3>Help and Information</h3>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../Help.aspx">Help</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../StoreLocations.aspx">Store Locations</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../Contact.aspx">Contact</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../ReturnPolicy.aspx">Return Policy</a>
+                            </div>-->
+                        </div>
+                        <div class="column"><!--
+                            <div class="columnHeading">
+                                <h3>Help and Information</h3>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../Help.aspx">Help</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../StoreLocations.aspx">Store Locations</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../Contact.aspx">Contact</a>
+                            </div>
+                            <div class="linkWrapper">
+                                <a class="link" href="../ReturnPolicy.aspx">Return Policy</a>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                
+               <!-- Again additional helpful links to login and register for an account -->
+                <div class="category" id="login">
+                    <div title="Sign In" class="accountLink hoverable">
+                        <a class ="headerLink fillParent" runat="server" onServerClick="LogInOut"><asp:Label runat="server" ID="signInOut"></asp:Label></a>
+                    </div>
+
+                    <div title="Register" class="accountLink hoverable">
+                        <a class ="headerLink fillParent" href="../Register.aspx">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server" >
+        
+        </asp:ContentPlaceHolder>
+
+        <!-- Footer is split into 3 columns -->
+        <div class="footerContent">
+            
+            <!-- startCol is specified to offset in css grid by 1 column -->
+            <div class="startCol">
+                <div class="columnHeading">
+                    <h3>Help and Information</h3>
+                </div>
+                <div class="linkWrapper">
+                    <a class="link" href="../Help.aspx">Help</a>
+                </div>
+                <div class="linkWrapper">
+                    <a class="link" href="../StoreLocations.aspx">Store Locations</a>
+                </div>
+                <div class="linkWrapper">
+                    <a class="link" href="../Contact.aspx">Contact</a>
+                </div>
+            </div>
+            <div class="column">
+                <div class="columnHeading">
+                    <h3>About AUS Fashion</h3>
+                </div>
+                <div class="linkWrapper">
+                    <a class="link" href="../About.aspx">About</a>
+                </div>
+                <div class="linkWrapper">
+                    <a class="link" href="../ReturnPolicy.aspx">Return Policy</a>
+                </div>
+                <div class="linkWrapper">
+                    <a class="link" href="../PrivacyPolicy.aspx">Privacy Policy</a>
+                </div>
+            </div>
+            
+
+            <div class="column">
+                <div class="columnHeading">
+                    <h3>Stay Connected</h3>
+                </div>
+
+                <div class="cardfooter">
+                    <img src="../Images/connections.png" />
+                    <br />
+                    Payment Options
+                    <br />
+                    <img src="../Images/cards.png" />
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    </form>
+</body>
+</html>
+           

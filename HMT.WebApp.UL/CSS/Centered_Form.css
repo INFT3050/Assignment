@@ -1,0 +1,65 @@
+﻿.pageHeading{
+    text-align:center;
+    font-size: var(--pageHeadingFontSize);
+}
+
+/* Positions the container in the center of the screen */
+.container{
+    text-align:center;
+    margin-left:37.5%;
+    margin-right:37.5%;
+}
+
+/* Stylises the grouped label/textboxs */
+.inputField {
+    outline: none;
+    height: 60px;
+    margin-bottom: 20px;
+    padding:0 5px;
+}
+
+/* Aligns elements so they position similarly to a list */
+.alignVert {
+    text-align:left;
+    display: block;
+    width: 100%;
+    float: left;
+}
+
+.miniHeading{
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+/* Stylises TextBoxes to remove bordering and adjust font size */
+.inputTxt{
+    border:none;
+    height:30px;
+    font-size:1.1em;
+}
+.inputTxt:focus{
+    outline:none;
+}
+
+/* Stylises form submission button */
+.regBtn {
+    margin-top: 5px;
+    width: 100%;
+    height: 40px;
+    font-size: var(--commonFontSize);
+}
+
+.extLink{
+    font-size: var(--commonFontSize);
+    margin: 15px 0;
+}
+
+/* Hides the span */
+.inputField span{
+    visibility:hidden;
+}
+
+.errorMsg{
+    font-size:15px;
+    color:red;
+}
