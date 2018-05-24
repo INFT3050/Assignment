@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using HMT.WebApp.BLL.App_Code;
+using HMT.WebApp.DAL.App_Code;
+
 
 namespace HMT.WebApp.UL
 {
@@ -16,22 +19,39 @@ namespace HMT.WebApp.UL
                 Response.Redirect("Sign_In.aspx");
             else
             {
-                firstName.Text = Session["firstName"].ToString();
-                lName.Text = Session["lastName"].ToString();
-                eMail.Text = Session["email"].ToString();
-                password.Text = Session["password"].ToString();
-                address.Text = Session["address"].ToString();
+                if (!IsPostBack)
+                {
+                    firstName.Text = Session["firstName"].ToString();
+                    lName.Text = Session["lastName"].ToString();
+                    eMail.Text = Session["email"].ToString();
+                    password.Text = Session["password"].ToString();
+                    address.Text = Session["address"].ToString();
+                }
             }
         }
 
         protected void updateChanges_Click(object sender, EventArgs e)
         {
-            Session["firstName"] = firstName.Text;
-            Session["lastName"] = lName.Text;
-            Session["email"] = eMail.Text;
-            Session["password"] = password.Text;
-            Session["address"] = address.Text;
-            Response.Redirect("Account.aspx");
+            BuisnessLayer control = new BuisnessLayer();
+            Customer person = new Customer();
+
+            person.firstName = firstName.Text;
+            person.lastName = lName.Text;
+            person.email = eMail.Text;
+            person.address = address.Text;
+            person.password = password.Text;
+
+            control.updateChanges(person, Session["email"].ToString());
+
+            Session["firstName"] = person.firstName;
+            Session["lastName"] = person.lastName;
+            Session["email"] = person.email;
+            Session["address"] = person.address;
+            Session["password"] = person.password;
+
+            
+
+            //Response.Redirect("Account.aspx");
         }
     }
 }

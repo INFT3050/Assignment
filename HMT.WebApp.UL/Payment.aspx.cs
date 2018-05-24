@@ -13,5 +13,15 @@ namespace HMT.WebApp.UL
         {
 
         }
+
+        protected void submit_Click(object sender, EventArgs e)
+        {
+            Session["total"] = 0;
+            Session["cart"] = "";
+            Session["name"] = "Your Cart is empty";
+            Session["price"] = "";
+            Session["image"] = "Images/emptycart.png";
+            Response.Redirect("Default.aspx");
+        }
     }
 }

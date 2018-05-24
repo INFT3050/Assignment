@@ -19,16 +19,20 @@ namespace HMT.WebApp.UL.Master_Pages
             {
                 signInOut.Text = "Sign In";
             }
+
+            if (Session["LoggedIn"].ToString() == "1")
+                greeting.Text = "Welcome Back!";
         }
 
         protected void LogInOut(object sender, EventArgs e)
         {
-            if (Session["firstName"].ToString() != "" && Session["firstName"].ToString() != "-1")
+            if (Session["LoggedIn"].ToString() == "1")
             {
                 //Signed in already. Therefore sign out.
                 Session["greeting"] = "Successfully Signed Out";
                 Session["firstName"] = "";
                 Session["password"] = "";
+                Session["LoggedIn"] = "0";
                 Response.Redirect("Default.aspx");
             }
             else

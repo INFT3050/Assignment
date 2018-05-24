@@ -26,8 +26,12 @@
             <span class="miniHeading alignVert">Password:</span>
             <asp:TextBox ID="pass1" runat="server" placeholder="Password *" CssClass="inputTxt alignVert" TextMode="Password" TabIndex="2" onfocus="reveal(this);" onblur="hide(this)"></asp:TextBox>
         </div>
+
+        <asp:TextBox ID="errorMsg" runat="server" CssClass="inputTxt alignVert" TabIndex="1" BorderStyle="None" BorderWidth="0" Enabled="False" BackColor="White" ForeColor="Red"></asp:TextBox>
+
         <div class="extLink" style="margin-top:0;"><a href="#">Forgotten your password?</a></div>
         <asp:Button ID="signIn" title="Sign In" runat="server" text="Sign In" CssClass="regBtn" TabIndex="3" OnClick="SignIn_Click"/>
+        
         <div class="extLink"><a href="Register.aspx">New to AUS Fashion? Create an Account today!</a></div>
     </div>
 </asp:Content>

@@ -14,13 +14,12 @@ namespace HMT.WebApp.UL
 
         protected void Application_Start(object sender, EventArgs e)
         {
-
         }
 
         protected void Session_Start(object sender, EventArgs e)
         {
             // Code run when session begins
-            Session["cart"] = "";
+            Session["LoggedIn"] = "0";
             Session["name"] = "Your Cart is empty";
             Session["price"] = 0;
             Session["image"] = "Images/emptycart.png";

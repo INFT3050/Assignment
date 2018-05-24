@@ -20,7 +20,7 @@
             <!-- Page title -->
             
             <div style="grid-column: span 12;">
-                <asp:Label ID="greeting" runat="server"><%:Session["greeting"]%></asp:Label>
+                <asp:Label ID="greeting" runat="server"></asp:Label>
             </div>
 
             <div class="title">

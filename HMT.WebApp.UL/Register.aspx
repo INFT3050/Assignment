@@ -49,7 +49,7 @@
             <asp:TextBox ID="pass2" runat="server" placeholder="Confirm Password *" CssClass="inputTxt alignVert" TextMode="Password" TabIndex="5" onfocus="reveal(this);" onblur="hide(this)"></asp:TextBox>
             <span class="errorMsg alignVert">Confirm Password</span>
         </div>
-        <asp:Button ID="register" runat="server" text="Register" CssClass="regBtn" TabIndex="6" OnClientClick="return validate_register()" OnClick="register_Click"/>
+        <asp:Button ID="register" runat="server" text="Register" TabIndex="6" OnClientClick="return validate_register()" OnClick="register_Click"/>
         <div class="link" tabindex="7"><a href="Sign_In.aspx">Already have an Account?</a></div>
     </div>
 </asp:Content>
