@@ -174,10 +174,10 @@ namespace HMT.WebApp.DAL.App_Code
             catch { throw; }
         }
 
-        //returns all customers in a table format StringBuilder
-        public StringBuilder getCustomers()
+        //returns all customers in a List
+        public List<Customer> getCustomers()
         {
-            StringBuilder table = new StringBuilder();
+            List<Customer> people = new List<Customer>();
 
             con.ConnectionString = ConString;
             if (ConnectionState.Closed == con.State)
@@ -186,31 +186,25 @@ namespace HMT.WebApp.DAL.App_Code
             SqlCommand cmd = new SqlCommand("select * from Client", con);
             SqlDataReader rd = cmd.ExecuteReader();
 
-            table.Append("<table border='1'>");
-            table.Append("<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Address</th><th>Suspended</th><th>update</th><th>Suspend</th>");
-            table.Append("</tr>");
-
             if (rd.HasRows)
             {
                 while (rd.Read())
                 {
-                    table.Append("<tr>");
-                    table.Append("<td>" + rd[0] + "</td>");
-                    table.Append("<td>" + rd[1] + "</td>");
-                    table.Append("<td>" + rd[2] + "</td>");
-                    table.Append("<td>" + rd[3] + "</td>");
-                    table.Append("<td>" + rd[4] + "</td>");
-                    table.Append("<td>" + rd[5] + "</td>");
-                    table.Append("<td><button id=\"update\" runat=\"server\" OnClick=\"updateRecord_Click(" + rd[0] + ")\" text=\"update\" CausesValidation=\"false\"/>Update</button></td>");
-                    table.Append(" <td><button id=\"suspend\" runat=\"server\" OnClick=\"suspendRecord_Click(" + rd[0] + ")\" text=\"suspend\" />Suspend</button></td>");
+                    Customer temp = new Customer();
+                    temp.id = Convert.ToInt32(rd[0]);
+                    temp.firstName = rd[1].ToString();
+                    temp.lastName = rd[2].ToString();
+                    temp.email = rd[3].ToString();
+                    temp.address = rd[4].ToString();
+                    temp.suspended = rd.GetBoolean(5);
+                    people.Add(temp);
                 }
             }
 
-            table.Append("</table>");
             rd.Close();
             con.Close();
 
-            return table;
+            return people;
         }
 
         // Update customer records

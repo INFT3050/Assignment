@@ -134,6 +134,8 @@
     <Content Include="CSS\General.css" />
     <Content Include="CSS\home.css" />
     <Content Include="CSS\StraightBody.css" />
+    <Content Include="ForgotPassword.aspx" />
+    <Content Include="ForgotPasswordSent.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Help.aspx" />
     <Content Include="Images\addToCart.png" />
@@ -163,6 +165,7 @@
     <Content Include="Payment.aspx" />
     <Content Include="PrivacyPolicy.aspx" />
     <Content Include="Product.aspx" />
+    <Content Include="ResetPassword.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -263,6 +266,20 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForgotPasswordSent.aspx.cs">
+      <DependentUpon>ForgotPasswordSent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPasswordSent.aspx.designer.cs">
+      <DependentUpon>ForgotPasswordSent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -322,6 +339,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReturnPolicy.aspx.cs">
       <DependentUpon>ReturnPolicy.aspx</DependentUpon>
@@ -388,7 +412,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55797</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55797/</IISUrl>
+          <IISUrl>http://localhost:55800/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

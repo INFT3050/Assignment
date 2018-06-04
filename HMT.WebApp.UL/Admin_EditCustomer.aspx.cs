@@ -11,13 +11,13 @@ namespace HMT.WebApp.UL
     {
         BuisnessLayer cust = new BuisnessLayer();
         StringBuilder table = new StringBuilder();
-
         //
         //
         protected void Page_Load(object sender, EventArgs e)
         {
             table = cust.updateTable();
             placeTable.Controls.Add(new Literal { Text = table.ToString() });
+            hide.Visible = false;
         }
 
         protected void searchID_Click(object sender, EventArgs e)
@@ -51,6 +51,7 @@ namespace HMT.WebApp.UL
                     address.Text = person.address;
                     suspended.Text = person.suspended.ToString();
                     Session["email"] = person.email;
+                    hide.Visible = true;
                 }
             }
         }
@@ -59,25 +60,25 @@ namespace HMT.WebApp.UL
         {
             Customer temp = new Customer();
 
-            if (search.Text != "" && first.Text != "")
-            {
+            
                 temp = cust.getCustomer(Convert.ToInt32(search.Text));
                 cust.suspendCustomer(temp);
                 Response.Redirect("Admin_EditCustomer.aspx");
-            }
+            
         }
 
         protected void update_Click(object sender, EventArgs e)
         {
-            Customer person = new Customer();
+                Customer person = new Customer();
 
-            person.firstName = first.Text;
-            person.lastName = last.Text;
-            person.email = email.Text;
-            person.address = address.Text;
+                person.firstName = first.Text;
+                person.lastName = last.Text;
+                person.email = email.Text;
+                person.address = address.Text;
 
-            cust.updateChanges(person, Session["email"].ToString());
-            Response.Redirect("Admin_EditCustomer.aspx");
+                cust.updateChanges(person, Session["email"].ToString());
+                Response.Redirect("Admin_EditCustomer.aspx");
+            
         }
     }
 }

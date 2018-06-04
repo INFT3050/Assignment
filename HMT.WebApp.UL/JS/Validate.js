@@ -102,6 +102,24 @@ function validate_register() {
     return valid;
 }
 
+function validate_update() {
+    var arr_txtbox = document.getElementsByClassName("inputTxt");
+    var arr_errorMsgs = document.getElementsByClassName("msgLbl");
+    var valid = true;
+
+    if (!checkEmail(arr_txtbox[2], arr_errorMsgs[0])) {
+        console.log("failed checkEmail");
+        valid = false;
+    }
+    if (!checkEmpty(arr_txtbox, arr_errorMsgs)) {
+        console.log("failed checkEmpty");
+        valid = false;
+    }
+
+    return valid;
+
+}
+
 
 
 function validate_detailChange() {

@@ -20,6 +20,6 @@ C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\HMT.WebApp.DAL.pdb
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.csprojResolveAssemblyReference.cache
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.dll
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.pdb
-C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.csprojResolveAssemblyReference.cache

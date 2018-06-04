@@ -29,6 +29,7 @@ namespace HMT.WebApp.UL
             Session["email"] = "";
             Session["password"] = "";
             Session["address"] = "";
+            Session["ResetEmail"] = "";
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
