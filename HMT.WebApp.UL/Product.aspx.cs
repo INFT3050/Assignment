@@ -11,7 +11,7 @@ namespace HMT.WebApp.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            MensTees cart = new MensTees();
+
         }
 
         protected void addtoCart(object sender, EventArgs e)

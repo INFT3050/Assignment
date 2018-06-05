@@ -41,5 +41,24 @@ namespace HMT.WebApp.UL.Master_Pages
                 Response.Redirect("Sign_In.aspx");
             }
         }
+
+        protected void MenClick(object sender, EventArgs e)
+        {
+            Session["search"] = "Gender = 'M'";
+            Session["description"] = "Men's Clothing";
+            Response.Redirect("Search.aspx");
+        }
+
+        protected void searchBtn_Click(object sender, EventArgs e)
+        {
+            if (searchTxt.Text == "")
+            { }
+            else
+            {
+                Session["search"] = "ProductNAME LIKE '" + searchTxt.Text + "%'";
+                Session["description"] = searchTxt.Text;
+                Response.Redirect("Search.aspx");
+            }
+        }
     }
 }

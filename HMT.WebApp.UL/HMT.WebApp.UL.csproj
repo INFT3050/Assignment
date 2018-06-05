@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44355</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -161,7 +161,7 @@
     <Content Include="JS\Validate.js" />
     <Content Include="Master_Pages\Default.Master" />
     <Content Include="Master_Pages\Admin.Master" />
-    <Content Include="MensTees.aspx" />
+    <Content Include="Search.aspx" />
     <Content Include="Payment.aspx" />
     <Content Include="PrivacyPolicy.aspx" />
     <Content Include="Product.aspx" />
@@ -178,7 +178,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Wishlist.aspx" />
-    <Content Include="Womens_Tees.aspx" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
@@ -304,12 +303,12 @@
     <Compile Include="Master_Pages\Default.Master.designer.cs">
       <DependentUpon>Default.Master</DependentUpon>
     </Compile>
-    <Compile Include="MensTees.aspx.cs">
-      <DependentUpon>MensTees.aspx</DependentUpon>
+    <Compile Include="Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MensTees.aspx.designer.cs">
-      <DependentUpon>MensTees.aspx</DependentUpon>
+    <Compile Include="Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="Payment.aspx.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
@@ -375,13 +374,6 @@
     <Compile Include="Wishlist.aspx.designer.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Womens_Tees.aspx.cs">
-      <DependentUpon>Womens_Tees.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Womens_Tees.aspx.designer.cs">
-      <DependentUpon>Womens_Tees.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HMT.WebApp.BLL\HMT.WebApp.BLL.csproj">
@@ -412,7 +404,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55797</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55800/</IISUrl>
+          <IISUrl>http://localhost:44355/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

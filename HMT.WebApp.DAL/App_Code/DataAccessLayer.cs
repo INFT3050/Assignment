@@ -11,7 +11,7 @@ namespace HMT.WebApp.DAL.App_Code
 {
     public class DataAccessLayer
     {
-        public string ConString = WebConfigurationManager.ConnectionStrings["HMTconnect"].ConnectionString;
+        private string ConString = WebConfigurationManager.ConnectionStrings["HMTconnect"].ConnectionString;
         SqlConnection con = new SqlConnection();
         
 
@@ -87,7 +87,7 @@ namespace HMT.WebApp.DAL.App_Code
 
         // Read(string email, string pass)
         // Checks if there is a customer in the database with correct email and password
-        // returns 0 for nothing detected, 1 for correct email and 2 for both correct, therefore login.
+        // returns 0 for nothing detected, 1 for correct email and 2 for both correct, therefore login or 3 for suspended account.
         public int Read(string email, string pass)
         {
             con.ConnectionString = ConString;
@@ -104,6 +104,12 @@ namespace HMT.WebApp.DAL.App_Code
                     if (rd.GetString(3) == email)
                     {
                         int ID = rd.GetInt32(0);
+
+                        if (rd.GetBoolean(5))
+                        {
+                            con.Close();
+                            return 3;
+                        }
 
                         //sql command to search for customer with the ID specified
                         cmd = new SqlCommand("select * from ClientPassword where ClientID = " + ID + "", con);
@@ -262,5 +268,38 @@ namespace HMT.WebApp.DAL.App_Code
             catch { throw; }
         }
 
+
+        public List<Product> queryProducts(string command)
+        {
+            List<Product> products = new List<Product>();
+
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+
+            SqlCommand cmd = new SqlCommand("select * from Product where " + command + "", con);
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            if (rd.HasRows)
+            {
+                while (rd.Read())
+                {
+                    Product temp = new Product();
+                    temp.id = Convert.ToInt32(rd[0]);
+                    temp.name = rd[1].ToString();
+                    temp.description = rd[2].ToString();
+                    temp.size = rd[3].ToString();
+                    temp.price = rd.GetDecimal(4);
+                    temp.image = rd[5].ToString();
+                    temp.gender = rd[6].ToString();
+                    products.Add(temp);
+                }
+            }
+
+            rd.Close();
+            con.Close();
+
+            return products;
+        }
     }
 }

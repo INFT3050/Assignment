@@ -37,6 +37,10 @@ namespace HMT.WebApp.UL
                 Session["LoggedIn"] = "1";
                 Response.Redirect("Default.aspx");
             }
+            if (check == 3)
+            {
+                errorMsg.Text = "This account has been suspended";
+            }
 
 
             if(txtEmail.Text.ToLower() == "admin" && pass1.Text == "admin")

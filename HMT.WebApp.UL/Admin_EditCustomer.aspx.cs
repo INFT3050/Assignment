@@ -61,23 +61,32 @@ namespace HMT.WebApp.UL
             Customer temp = new Customer();
 
             
-                temp = cust.getCustomer(Convert.ToInt32(search.Text));
-                cust.suspendCustomer(temp);
-                Response.Redirect("Admin_EditCustomer.aspx");
+            temp = cust.getCustomer(Convert.ToInt32(search.Text));
+            cust.suspendCustomer(temp);
+            Response.Redirect("Admin_EditCustomer.aspx");
             
+        }
+
+        protected void updateRecord_Click(object sender, EventArgs e)
+        {
+            search.Text = "OMG";
+
         }
 
         protected void update_Click(object sender, EventArgs e)
         {
-                Customer person = new Customer();
+            Customer person = new Customer();
 
-                person.firstName = first.Text;
-                person.lastName = last.Text;
-                person.email = email.Text;
-                person.address = address.Text;
-
-                cust.updateChanges(person, Session["email"].ToString());
-                Response.Redirect("Admin_EditCustomer.aspx");
+            person.firstName = first.Text;
+            person.lastName = last.Text;
+            person.email = email.Text;
+            person.address = address.Text;
+            if(suspended.Text == "False")
+                person.suspended = false;
+            else
+                person.suspended = true;
+            cust.updateChanges(person, Session["email"].ToString());
+            Response.Redirect("Admin_EditCustomer.aspx");
             
         }
     }

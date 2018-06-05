@@ -30,7 +30,7 @@
 }
 
 .searchBar {
-    width:100%; 
+    width:75%; 
     border-radius:8px;
     font-size: var(--commonFontSize);
 }

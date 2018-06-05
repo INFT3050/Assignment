@@ -23,7 +23,7 @@
         <asp:TextBox CssClass="inputTxt" ID="email" runat="server" TabIndex="3"></asp:TextBox>
         <asp:TextBox CssClass="inputTxt" ID="address" runat="server" TabIndex="4"></asp:TextBox>
         <asp:TextBox CssClass="inputTxt" ID="suspended" runat="server" TabIndex="5" ReadOnly="true"></asp:TextBox>
-        <asp:Button id="update" runat="server" Text="Update" OnClientClick="return validate_update()" OnClick="update_Click"/>
+        <asp:Button id="update" runat="server" Text="Update" OnClick="update_Click"/>
         <asp:Button id="delete" runat="server" Text="Suspend" OnClick="suspend_Click"/>
 
     </div>

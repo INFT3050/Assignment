@@ -30,6 +30,8 @@ namespace HMT.WebApp.UL
             Session["password"] = "";
             Session["address"] = "";
             Session["ResetEmail"] = "";
+            Session["search"] = "";
+            Session["description"] = "Men's Clothing";
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
