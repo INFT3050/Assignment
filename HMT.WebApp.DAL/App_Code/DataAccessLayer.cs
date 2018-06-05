@@ -277,7 +277,7 @@ namespace HMT.WebApp.DAL.App_Code
             if (ConnectionState.Closed == con.State)
                 con.Open();
 
-            SqlCommand cmd = new SqlCommand("select * from Product where " + command + "", con);
+            SqlCommand cmd = new SqlCommand(command, con);
             SqlDataReader rd = cmd.ExecuteReader();
 
             if (rd.HasRows)

@@ -63,3 +63,14 @@
     font-size:15px;
     color:red;
 }
+
+.flexbox-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.flexbox-container > * {
+    align-self: center;
+}

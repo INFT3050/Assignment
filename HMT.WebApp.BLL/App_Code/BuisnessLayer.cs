@@ -22,35 +22,7 @@ namespace HMT.WebApp.BLL.App_Code
             DataAccessLayer newCustomer = new DataAccessLayer();
             newCustomer.Insert(Fname, lName, email, address, pass);
         }
-
-        // returns the customer records in a table format
-        public StringBuilder updateTable()
-        {
-            StringBuilder table = new StringBuilder();
-            List<Customer> people = control.getCustomers();
-
-            table.Append("<table border='0'>");
-            table.Append("<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Address</th><th>Suspended</th><th>update</th><th>Suspend</th>");
-            table.Append("</tr>");
-
-            foreach (var item in people)
-            {
-                table.Append("<tr>");
-                table.Append("<td>" + item.id + "</td>");
-                table.Append("<td>" + item.firstName + "</td>");
-                table.Append("<td>" + item.lastName + "</td>");
-                table.Append("<td>" + item.email + "</td>");
-                table.Append("<td>" + item.address + "</td>");
-                table.Append("<td>" + item.suspended + "</td>");
-                table.Append("<td><button id='update' runat='server' OnClick='updateRecord_Click(" + item.id + ")' text='update'>Update</button></td>");
-                table.Append(" <td><button id=\"suspend\" runat=\"server\" OnClick=\"suspendRecord_Click()\" text=\"suspend\" />Suspend</button></td>");
-            }
-
-            table.Append("</table>");
-
-            return table;
-        }
-
+        
         // returns the person with the specified ID
         public Customer getCustomer(int id)
         {
@@ -79,28 +51,80 @@ namespace HMT.WebApp.BLL.App_Code
             control.suspend(person);
         }
 
-        public StringBuilder queryProducts(string cmd)
+
+        // String builder tables
+        // returns the customer records in a table format
+        public StringBuilder updateTable()
         {
             StringBuilder table = new StringBuilder();
-            List<Product> products = control.queryProducts(cmd);
+            List<Customer> people = control.getCustomers();
 
             table.Append("<table border='0'>");
+            table.Append("<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Address</th><th>Suspended</th>");
+            table.Append("</tr>");
 
-            foreach (var item in products)
+            foreach (var item in people)
             {
-                table.Append("<tr><td><img style='width: auto; height: 400px' src = '" + item.image+ "'/></td></tr>");
-                table.Append("<tr><td>" + item.name + "</td></tr>");
-                table.Append("<tr><td>" + item.description + "</td></tr>");
-                table.Append("<tr><td>" + item.size + "</td></tr>");
-                table.Append("<tr><td>$" + item.price + "</td></tr>");
-                table.Append("<tr><td><b>Product ID: " + item.id + "</b><hr></td></tr>");
+                table.Append("<tr>");
+                table.Append("<td>" + item.id + "</td>");
+                table.Append("<td>" + item.firstName + "</td>");
+                table.Append("<td>" + item.lastName + "</td>");
+                table.Append("<td>" + item.email + "</td>");
+                table.Append("<td>" + item.address + "</td>");
+                table.Append("<td>" + item.suspended + "</td>");
             }
 
             table.Append("</table>");
 
             return table;
+        }
 
+        public StringBuilder queryProducts(string cmd)
+        {
+            StringBuilder table = new StringBuilder();
+            List<Product> products = control.queryProducts(cmd);
 
+            table.Append("<div class='grid'>");
+
+            foreach (var item in products)
+            {
+                table.Append("<div class='flexbox-container'><div><img style='width: auto; height: 400px' src = '" + item.image + "'/></div>");
+                table.Append("<p>" + item.name + "</p>");
+                table.Append("<p>" + item.description + "</p>");
+                table.Append("<p>" + item.size + "</p>");
+                table.Append("<p>$" + item.price + "</p>");
+                table.Append("<button>Add to Cart (" + item.id + ")</button></div>");
+            }
+
+            table.Append("</div>");
+
+            return table;
+        }
+
+        public StringBuilder getProducts()
+        {
+            StringBuilder table = new StringBuilder();
+            List<Product> people = control.queryProducts("select * from Product");
+
+            table.Append("<table border='1'>");
+            table.Append("<tr><th>ID</th><th>Product Name</th><th>Product Description</th><th>Product Size</th><th>Price</th><th>Image</th><th>Gender</th>");
+            table.Append("</tr>");
+
+            foreach (var item in people)
+            {
+                table.Append("<tr>");
+                table.Append("<td>" + item.id + "</td>");
+                table.Append("<td>" + item.name + "</td>");
+                table.Append("<td>" + item.description + "</td>");
+                table.Append("<td>" + item.size + "</td>");
+                table.Append("<td>" + item.price + "</td>");
+                table.Append("<td>" + item.image + "</td>");
+                table.Append("<td>" + item.gender + "</td>");
+            }
+
+            table.Append("</table>");
+
+            return table;
         }
     }
 }

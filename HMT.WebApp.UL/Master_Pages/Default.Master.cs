@@ -44,7 +44,7 @@ namespace HMT.WebApp.UL.Master_Pages
 
         protected void MenClick(object sender, EventArgs e)
         {
-            Session["search"] = "Gender = 'M'";
+            Session["search"] = "select * from Product where Gender = 'M'";
             Session["description"] = "Men's Clothing";
             Response.Redirect("Search.aspx");
         }
@@ -55,7 +55,7 @@ namespace HMT.WebApp.UL.Master_Pages
             { }
             else
             {
-                Session["search"] = "ProductNAME LIKE '" + searchTxt.Text + "%'";
+                Session["search"] = "select * from Product where ProductNAME LIKE '" + searchTxt.Text + "%'";
                 Session["description"] = searchTxt.Text;
                 Response.Redirect("Search.aspx");
             }

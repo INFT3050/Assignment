@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master_Pages/Default.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="HMT.WebApp.UL.Search" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" type="text/css" href="CSS/StraightBody.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/Default.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Centered_Form.css" />
     <link rel="stylesheet" type="text/css" href="CSS/General.css" />
 
@@ -9,17 +9,9 @@
  <!-- Displays all the Mens Shirts -->   
 
     <h1>Search Results for <%:Session["description"]%></h1>
-    
-    <div id="myHeader" style="margin-left:20px; margin-top:20px; position:fixed">
-        <!-- Update and delete section for editing customer records -->
-            <h3>Enter Product ID to add to cart</h3>
-            <asp:TextBox ID="search" runat="server" placeholder="Enter ID" CssClass="inputTxt alignVert" onfocus="reveal(this);" onblur="hide(this)"></asp:TextBox>
-            <asp:Button id="searchID" runat="server" Text="Add to Cart" OnClick="searchID_Click"/>
-            <asp:Label CssClass="msgLbl" ID="msgLbl" runat="server" BorderStyle="None"></asp:Label>
-        
-    </div>
 
-    <div class ="container">
+
+    <div>
         <!-- table to display records -->
         <asp:PlaceHolder ID="placeTable" runat="server"></asp:PlaceHolder>
     </div>

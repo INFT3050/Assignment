@@ -13,33 +13,6 @@ namespace HMT.WebApp.UL {
     public partial class Search {
         
         /// <summary>
-        /// search control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox search;
-        
-        /// <summary>
-        /// searchID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button searchID;
-        
-        /// <summary>
-        /// msgLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label msgLbl;
-        
-        /// <summary>
         /// placeTable control.
         /// </summary>
         /// <remarks>

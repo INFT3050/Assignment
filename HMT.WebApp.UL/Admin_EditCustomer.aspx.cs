@@ -70,7 +70,6 @@ namespace HMT.WebApp.UL
         protected void updateRecord_Click(object sender, EventArgs e)
         {
             search.Text = "OMG";
-
         }
 
         protected void update_Click(object sender, EventArgs e)
