@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master_Pages/Default.Master" AutoEventWireup="true" CodeBehind="Product.aspx.cs" Inherits="HMT.WebApp.UL.Product" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master_Pages/Default.Master" AutoEventWireup="true" CodeBehind="ProductFind.aspx.cs" Inherits="HMT.WebApp.UL.ProductFind" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/General.css" />
     <link rel="stylesheet" type="text/css" href="CSS/StraightBody.css" />

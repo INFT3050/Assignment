@@ -10,7 +10,7 @@
 namespace HMT.WebApp.UL {
     
     
-    public partial class Product {
+    public partial class ProductFind {
         
         /// <summary>
         /// currentProduct control.

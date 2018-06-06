@@ -15,7 +15,7 @@ namespace HMT.WebApp.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.pass1.Attributes.Add("onkeypress", "button_click(tihs, '" + this.pass1.ClientID + "')");
         }
 
         protected void SignIn_Click(object sender, EventArgs e)

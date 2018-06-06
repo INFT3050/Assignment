@@ -36,7 +36,7 @@ namespace HMT.WebApp.BLL.App_Code
         public Customer getCustomer(string email)
         {
             Customer person = new Customer();
-            person = control.find(email);
+            person = control.find(-1, email);
 
             return person;
         }
@@ -51,6 +51,16 @@ namespace HMT.WebApp.BLL.App_Code
             control.suspend(person);
         }
 
+        public Product getProduct(int id)
+        {
+            return control.findProduct(id);
+        }
+
+        public void updateProduct(Product change)
+        {
+            control.update(change);
+        }
+
 
         // String builder tables
         // returns the customer records in a table format
@@ -59,7 +69,7 @@ namespace HMT.WebApp.BLL.App_Code
             StringBuilder table = new StringBuilder();
             List<Customer> people = control.getCustomers();
 
-            table.Append("<table border='0'>");
+            table.Append("<table border='1'>");
             table.Append("<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Address</th><th>Suspended</th>");
             table.Append("</tr>");
 

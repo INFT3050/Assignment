@@ -16,7 +16,7 @@ namespace HMT.WebApp.DAL.App_Code
         
 
         
-        public Customer find(int num)
+        public Customer find(int num = -1, string email = "")
         {
             con.ConnectionString = ConString;
             if (ConnectionState.Closed == con.State)
@@ -30,9 +30,9 @@ namespace HMT.WebApp.DAL.App_Code
             {
                 while (rd.Read())
                 {
-                    if (rd.GetInt32(0) == num)
+                    if (rd.GetInt32(0) == num || rd.GetString(3) == email)
                     {
-                        person.id = num;
+                        person.id = rd.GetInt32(0);
                         person.firstName = rd.GetString(1);
                         person.lastName = rd.GetString(2);
                         person.email = rd.GetString(3);
@@ -43,47 +43,47 @@ namespace HMT.WebApp.DAL.App_Code
                     }
                 }
             }
-            catch { throw; }
+            catch { }
 
             person.firstName = "-1";
             con.Close();
             return person;
         }
 
-        public Customer find(string email)
+        public Product findProduct(int id)
         {
             con.ConnectionString = ConString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
 
-            SqlCommand cmd = new SqlCommand("select * from Client", con);
+            SqlCommand cmd = new SqlCommand("select * from Product", con);
             SqlDataReader rd = cmd.ExecuteReader();
-            Customer person = new Customer();
+            Product product = new Product();
 
             try
             {
                 while (rd.Read())
                 {
-                    if (rd.GetString(3) == email)
+                    if (rd.GetInt32(0) == id)
                     {
-                        person.id = rd.GetInt32(0);
-                        person.firstName = rd.GetString(1);
-                        person.lastName = rd.GetString(2);
-                        person.email = email;
-                        person.address = rd.GetString(4);
-                        person.suspended = rd.GetBoolean(5);
+                        product.id = rd.GetInt32(0);
+                        product.name = rd.GetString(1);
+                        product.description = rd.GetString(2);
+                        product.size = rd.GetString(3);
+                        product.price = rd.GetDecimal(4);
+                        product.image = rd.GetString(5);
+                        product.gender = rd.GetString(6);
                         con.Close();
-                        return person;
+                        return product;
                     }
                 }
             }
-            catch { throw; }
+            catch { }
 
-            person.firstName = "-1";
+            product.name = "-1";
             con.Close();
-            return person;
+            return product;
         }
-
 
         // Read(string email, string pass)
         // Checks if there is a customer in the database with correct email and password
@@ -138,7 +138,7 @@ namespace HMT.WebApp.DAL.App_Code
         }
 
         //Inserts a new Customer in Customer Table
-        public Int32 Insert(string Fname, string lName, string email, string address, string pass)
+        public void Insert(string Fname, string lName, string email, string address, string pass)
         {
             con.ConnectionString = ConString;
             if (ConnectionState.Closed == con.State)
@@ -175,9 +175,9 @@ namespace HMT.WebApp.DAL.App_Code
                 cmd.Parameters.AddWithValue("@ClientID", ID);
                 cmd.Parameters.AddWithValue("@password", pass);
 
-                return cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
             }
-            catch { throw; }
+            catch { }
         }
 
         //returns all customers in a List
@@ -246,7 +246,29 @@ namespace HMT.WebApp.DAL.App_Code
                 }
                 con.Close();
             }
-            catch { throw; }
+            catch { }
+        }
+
+        public void update(Product product)
+        {
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+
+            //try
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE Product SET ProductNAME = @name, ProductDescription = @description, ProductSize = @size, Price = @price, Image = @image, Gender = @gender WHERE (ProductID = '"+ product.id +"')" , con);
+                cmd.Parameters.AddWithValue("@name", product.name);
+                cmd.Parameters.AddWithValue("@description", product.description);
+                cmd.Parameters.AddWithValue("@size", product.size);
+                cmd.Parameters.AddWithValue("@price", product.price);
+                cmd.Parameters.AddWithValue("@image", product.image);
+                cmd.Parameters.AddWithValue("@gender", product.gender);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            //catch { throw; }
         }
 
         public void suspend(Customer person)
