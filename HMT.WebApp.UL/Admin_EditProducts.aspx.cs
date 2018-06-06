@@ -60,7 +60,7 @@ namespace HMT.WebApp.UL
 
         protected void suspend_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void update_Click(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace HMT.WebApp.UL
             product.price = Convert.ToDecimal(price.Text);
             product.image = image.Text;
             product.gender = gender.Text;
-            
+
             cust.updateProduct(product);
             Response.Redirect("Admin_EditProducts.aspx");
 

@@ -103,7 +103,7 @@ namespace HMT.WebApp.BLL.App_Code
                 table.Append("<p>" + item.description + "</p>");
                 table.Append("<p>" + item.size + "</p>");
                 table.Append("<p>$" + item.price + "</p>");
-                table.Append("<button>Add to Cart (" + item.id + ")</button></div>");
+                table.Append("**(" + item.id + ")</div>");
             }
 
             table.Append("</div>");

@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Default.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Centered_Form.css" />
     <link rel="stylesheet" type="text/css" href="CSS/General.css" />
-
+    <link rel="stylesheet" type="text/css" href="CSS/StraightBody.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
  <!-- Displays all the Mens Shirts -->   

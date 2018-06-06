@@ -87,51 +87,60 @@ namespace HMT.WebApp.DAL.App_Code
 
         // Read(string email, string pass)
         // Checks if there is a customer in the database with correct email and password
-        // returns 0 for nothing detected, 1 for correct email and 2 for both correct, therefore login or 3 for suspended account.
+        // returns 0 for nothing detected, 1 for correct email and 2 for both correct, therefore login, 3 for suspended account, 4 for admin privileges.
         public int Read(string email, string pass)
         {
             con.ConnectionString = ConString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
 
-            SqlCommand cmd = new SqlCommand("select * from Client", con);
+            SqlCommand cmd = new SqlCommand("select * from ClientAdmin where Username = '" + email + "'", con);
             SqlDataReader rd = cmd.ExecuteReader();
 
-            //try
+            while (rd.Read())
             {
-                while (rd.Read())
+                if (rd.GetString(2) == pass)
                 {
-                    if (rd.GetString(3) == email)
+                    con.Close();
+                    return 4;
+                }
+            }
+
+            rd.Close();
+            cmd = new SqlCommand("select * from Client", con);
+            rd = cmd.ExecuteReader();
+
+            while (rd.Read())
+            {
+                if (rd.GetString(3) == email)
+                {
+                    int ID = rd.GetInt32(0);
+
+                    if (rd.GetBoolean(5))
                     {
-                        int ID = rd.GetInt32(0);
+                        con.Close();
+                        return 3;
+                    }
 
-                        if (rd.GetBoolean(5))
-                        {
-                            con.Close();
-                            return 3;
-                        }
+                    //sql command to search for customer with the ID specified
+                    cmd = new SqlCommand("select * from ClientPassword where ClientID = " + ID + "", con);
+                    rd.Close();
+                    SqlDataReader pa = cmd.ExecuteReader();
 
-                        //sql command to search for customer with the ID specified
-                        cmd = new SqlCommand("select * from ClientPassword where ClientID = " + ID + "", con);
-                        rd.Close();
-                        SqlDataReader pa = cmd.ExecuteReader();
-
-                        if (pa.Read() && pa.GetString(2) == pass)
-                        {
-                            pa.Close();
-                            con.Close();
-                            return 2;
-                        }
-                        else
-                        {
-                            pa.Close();
-                            con.Close();
-                            return 1;
-                        }
+                    if (pa.Read() && pa.GetString(2) == pass)
+                    {
+                        pa.Close();
+                        con.Close();
+                        return 2;
+                    }
+                    else
+                    {
+                        pa.Close();
+                        con.Close();
+                        return 1;
                     }
                 }
             }
-            //catch { throw; }
 
             con.Close();
             return 0;
@@ -255,9 +264,8 @@ namespace HMT.WebApp.DAL.App_Code
             if (ConnectionState.Closed == con.State)
                 con.Open();
 
-            //try
             {
-                SqlCommand cmd = new SqlCommand("UPDATE Product SET ProductNAME = @name, ProductDescription = @description, ProductSize = @size, Price = @price, Image = @image, Gender = @gender WHERE (ProductID = '"+ product.id +"')" , con);
+                SqlCommand cmd = new SqlCommand("UPDATE Product SET ProductNAME = @name, ProductDescription = @description, ProductSize = @size, Price = @price, Image = @image, Gender = @gender WHERE (ProductID = '" + product.id + "')", con);
                 cmd.Parameters.AddWithValue("@name", product.name);
                 cmd.Parameters.AddWithValue("@description", product.description);
                 cmd.Parameters.AddWithValue("@size", product.size);
@@ -268,7 +276,6 @@ namespace HMT.WebApp.DAL.App_Code
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
-            //catch { throw; }
         }
 
         public void suspend(Customer person)
@@ -323,5 +330,7 @@ namespace HMT.WebApp.DAL.App_Code
 
             return products;
         }
+
+        
     }
 }
