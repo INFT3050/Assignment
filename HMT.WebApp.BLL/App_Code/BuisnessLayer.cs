@@ -148,5 +148,37 @@ namespace HMT.WebApp.BLL.App_Code
                 control.InsertCartItem(productID, cartID);
             }
         }
+
+        public void RemoveItemFromCart(int btn, int custID)
+        {
+            int cartID = control.FindCartID(custID);
+            control.RemoveCartItem(btn ,cartID);
+        }
+
+        public StringBuilder getCart(int custID)
+        {
+            StringBuilder table = new StringBuilder();
+            int cartID = control.FindCartID(custID);
+            Cart tempCart = control.getCart(cartID);
+            List<Item> products = tempCart.products;
+
+            decimal total = 0;
+            foreach (var itemP in products)
+            {
+                List<Product> temp = control.queryProducts("select * from Product where ProductID = '" + itemP.product + "'");
+                Product item = temp[0];
+
+                table.Append("<div class='grouping'><img class='edit' src = '" + item.image + "'/>");
+                table.Append("<div>" + item.name + "</div>");
+                table.Append("<div>" + item.size + "</div>");
+                table.Append("<div>Quantity: " + itemP.quantity + "</div>");
+                table.Append("<div>$" + item.price + "</div>");
+                table.Append("<div>**(" + item.id + ")</div></div>");
+                total = total + itemP.quantity*item.price;
+            }
+            table.Append("<h2>Total: $" + total + "</h2>");
+
+            return table;
+        }
     }
 }

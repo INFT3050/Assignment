@@ -5,12 +5,12 @@ using System.Web;
 
 namespace HMT.WebApp.DAL.App_Code
 {
-    public class Cart
+    public class Item
     {
-        public int id           { get; set; }
-        public List<Item> products { get; set; }
-        public string DateCreated  { get; set; }
+        public int id { get; set; }
+        public int product { get; set; }
+        public int quantity { get; set; }
+        public int cartID { get; set; }
         public bool IsActive { get; set; }
-
     }
 }

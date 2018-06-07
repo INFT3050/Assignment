@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\Cart.cs" />
+    <Compile Include="App_Code\Item.cs" />
     <Compile Include="App_Code\Customer.cs" />
     <Compile Include="App_Code\DataAccessLayer.cs" />
     <Compile Include="App_Code\Product.cs" />

@@ -227,6 +227,7 @@ E:\Web Applications\Assignment\HMT.WebApp.UL\obj\Debug\HMT.WebApp.UL.csproj.Core
 E:\Web Applications\Assignment\HMT.WebApp.UL\obj\Debug\HMT.WebApp.UL.csproj.CopyComplete
 E:\Web Applications\Assignment\HMT.WebApp.UL\obj\Debug\HMT.WebApp.UL.dll
 E:\Web Applications\Assignment\HMT.WebApp.UL\obj\Debug\HMT.WebApp.UL.pdb
+C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.UL\obj\Debug\HMT.WebApp.UL.csprojResolveAssemblyReference.cache
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.UL\bin\HMT.WebApp.UL.dll.config
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.UL\bin\HMT.WebApp.UL.dll
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.UL\bin\HMT.WebApp.UL.pdb
@@ -260,6 +261,5 @@ C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.UL\bin\System.Web.WebPages.xml
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.UL\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.UL\bin\System.Web.WebPages.Razor.xml
-C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.UL\obj\Debug\HMT.WebApp.UL.csprojResolveAssemblyReference.cache
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.UL\obj\Debug\HMT.WebApp.UL.dll
 C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.UL\obj\Debug\HMT.WebApp.UL.pdb

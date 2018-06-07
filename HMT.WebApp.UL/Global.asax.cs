@@ -21,7 +21,6 @@ namespace HMT.WebApp.UL
             // Code run when session begins
             Session["LoggedIn"] = "0";
             Session["name"] = "Your Cart is empty";
-            Session["price"] = 0;
             Session["image"] = "Images/emptycart.png";
             Session["Total"] = 0;
             Session["ID"] = 0;

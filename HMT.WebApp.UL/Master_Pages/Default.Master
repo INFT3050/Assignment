@@ -42,7 +42,7 @@
                     <a href="../Wishlist.aspx"><img alt="wishlist" title="My Wishlist" src="images/wishlist.jpg" /></a>
             </div>
             <div class="quickLinks">                
-                    <a href="../Cart.aspx"><img alt="cart" title="My Shopping Cart" src="images/cart2.png" /></a>
+                    <a href="../ShowCart.aspx"><img alt="cart" title="My Shopping Cart" src="images/cart2.png" /></a>
             </div>
 
             <!-- Main naviagation menu with dropdown menu items -->

@@ -12,18 +12,15 @@
             <div class="grouping" style="border-top:1px solid darkgrey;">
                 <p class="itemName">Item</p>
                      Price
-            </div>
-            <!-- Shows all their products and the price of each item -->
-            <div class="grouping">
-                <img class="edit" src="<%:Session["image"]%>"/>
-                <p class="itemName"><%:Session["name"]%></p>
-                <p class="itemName"><%:Session["price"]%></p>
-                
 
-                <asp:Button id="rmvFromCart" runat="server" CssClass="btn removeFromCart" OnClick="rmvFromCart_Click"/>
             </div>
-            <!-- Shows the total price -->
-            <h2>Total: $<%:Session["total"]%></h2>
+
+                <!-- table to display records -->
+                <asp:PlaceHolder ID="placeTable" runat="server"></asp:PlaceHolder>
+            
+        
+
+            <!-- Shows all their products and the price of each item -->
 
             <div class="flexContainer">
                 <div class="flexRight">
@@ -33,7 +30,8 @@
                 </div>
                 
             </div>
-        </div>
+            </div>
+
       </div>
         
             

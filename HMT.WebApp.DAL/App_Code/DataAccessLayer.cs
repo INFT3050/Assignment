@@ -414,7 +414,7 @@ namespace HMT.WebApp.DAL.App_Code
                     cmd.ExecuteNonQuery();
                 }
 
-                // If no current quantity was found, then insert a new row into table CartItem.
+                // If no current quantity was found, then insert a new row into table Product.
                 else
                 {
                     con.Close();
@@ -429,20 +429,21 @@ namespace HMT.WebApp.DAL.App_Code
             con.ConnectionString = ConString;
             if (ConnectionState.Closed == con.State)
                 con.Open();
-            try
-            {
+            //try
+            
                 
                 SqlCommand cmd = new SqlCommand("SELECT * FROM CartItems", con);
                 SqlDataReader rd = cmd.ExecuteReader();
 
                 // Soft deletes CartItems by setting isActive to 0 (false).
-                cmd = new SqlCommand("UPDATE CartItems SET isActive = 0 WHERE (ProductID = @ProductID AND CartID = @CartID)", con);
+                cmd = new SqlCommand("UPDATE CartItems SET IsActive = 0, Quantity = 0 WHERE (ProductID = @ProductID AND CartID = @CartID)", con);
                 cmd.Parameters.AddWithValue("@ProductID", ProductID);
                 cmd.Parameters.AddWithValue("@CartID", CartID);
+                rd.Close();
                 cmd.ExecuteNonQuery();
-                
-            }
-            catch { }
+                con.Close();
+            
+            //catch { }
         }
 
         public void ReduceCartItemQuantity(int ProductID, int CartID)
@@ -496,15 +497,14 @@ namespace HMT.WebApp.DAL.App_Code
 
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT CartID FROM ShoppingCart WHERE ClientID = @ClientID", con);
+                SqlCommand cmd = new SqlCommand("SELECT CartID FROM ShoppingCart WHERE (ClientID = @ClientID AND IsActive = @IsActive)", con);
                 cmd.Parameters.AddWithValue("@ClientID", customerID);
+                cmd.Parameters.AddWithValue("@IsActive", 1);
                 SqlDataReader rd = cmd.ExecuteReader();
 
            
-                while (rd.Read()) 
+                while (rd.Read())
                 {
-                    
-
                     int val = rd.GetInt32(0);
                     con.Close();
                     rd.Close();
@@ -512,7 +512,41 @@ namespace HMT.WebApp.DAL.App_Code
                 }
             }
             catch { throw;  }
+            con.Close();
             return -1;  // This should only occur if there is an error within the Try-Catch block, there is no soft-fail option available.
+        }
+
+        public Cart getCart(int cartID)
+        {
+            Cart cart = new Cart();
+            cart.products = new List<Item>();
+
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+
+            //try
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM CartItems WHERE (CartID = @CartID)", con);
+                cmd.Parameters.AddWithValue("@CartID", cartID);
+                SqlDataReader rd = cmd.ExecuteReader();
+
+                while (rd.Read())
+                {
+                    Item temp = new Item();
+                    temp.id = rd.GetInt32(0);
+                    temp.quantity = rd.GetInt32(2);
+                    temp.product = rd.GetInt32(1);
+                    temp.IsActive = rd.GetBoolean(4);
+                    
+                    cart.products.Add(temp);
+                }
+
+                    con.Close();
+                    rd.Close();
+                    return cart;
+            }
+            //catch { throw; }
         }
     }
 }
