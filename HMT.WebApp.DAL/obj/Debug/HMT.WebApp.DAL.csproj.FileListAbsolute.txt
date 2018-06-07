@@ -15,14 +15,6 @@ D:\HMT-Assign1 - v2\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\Microsof
 D:\HMT-Assign1 - v2\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.csprojResolveAssemblyReference.cache
 D:\HMT-Assign1 - v2\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.dll
 D:\HMT-Assign1 - v2\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.pdb
-C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\HMT.WebApp.DAL.dll.config
-C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\HMT.WebApp.DAL.dll
-C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\HMT.WebApp.DAL.pdb
-C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.csprojResolveAssemblyReference.cache
-C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.dll
-C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.pdb
 E:\Web Applications\Assignment\HMT.WebApp.DAL\bin\HMT.WebApp.DAL.dll.config
 E:\Web Applications\Assignment\HMT.WebApp.DAL\bin\HMT.WebApp.DAL.dll
 E:\Web Applications\Assignment\HMT.WebApp.DAL\bin\HMT.WebApp.DAL.pdb
@@ -33,3 +25,11 @@ E:\Web Applications\Assignment\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.csproj.Co
 E:\Web Applications\Assignment\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.csproj.CopyComplete
 E:\Web Applications\Assignment\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.dll
 E:\Web Applications\Assignment\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.pdb
+C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\HMT.WebApp.DAL.dll.config
+C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\HMT.WebApp.DAL.dll
+C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\HMT.WebApp.DAL.pdb
+C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.dll
+C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.pdb
+C:\Users\Ben.Hogan\Desktop\HMT-Assign1 - v3\WebApplication\Assignment-master\HMT.WebApp.DAL\obj\Debug\HMT.WebApp.DAL.csprojResolveAssemblyReference.cache

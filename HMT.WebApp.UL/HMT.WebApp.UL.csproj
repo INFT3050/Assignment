@@ -127,7 +127,7 @@
     <Content Include="Admin_EditProducts.aspx" />
     <Content Include="Admin_EditTransactions.aspx" />
     <Content Include="Admin_Home.aspx" />
-    <Content Include="Cart.aspx" />
+    <Content Include="ShowCart.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="CSS\Admin.css" />
     <Content Include="CSS\Centered_Form.css" />
@@ -244,12 +244,12 @@
     <Compile Include="Admin_Home.aspx.designer.cs">
       <DependentUpon>Admin_Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Cart.aspx.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
+    <Compile Include="ShowCart.aspx.cs">
+      <DependentUpon>ShowCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Cart.aspx.designer.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
+    <Compile Include="ShowCart.aspx.designer.cs">
+      <DependentUpon>ShowCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

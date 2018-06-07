@@ -29,6 +29,7 @@ namespace HMT.WebApp.UL
             else if (check == 2)
             {
                 Customer temp = cust.getCustomer(txtEmail.Text);
+                Session["ID"] = temp.id;
                 Session["firstName"] = temp.firstName;
                 Session["lastName"] = temp.lastName;
                 Session["email"] = txtEmail.Text;

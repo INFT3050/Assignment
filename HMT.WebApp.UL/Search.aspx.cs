@@ -54,6 +54,7 @@ namespace HMT.WebApp.UL
         {
             Button btn = (Button)sender;
             System.Diagnostics.Debug.WriteLine(btn.CommandArgument);
+            cust.AddToCartItems(Convert.ToInt32(btn.CommandArgument), Convert.ToInt32(Session["ID"]));
         }
     }
 }

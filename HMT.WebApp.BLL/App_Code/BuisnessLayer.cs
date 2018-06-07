@@ -1,4 +1,5 @@
-﻿using HMT.WebApp.DAL.App_Code;
+﻿using System;
+using HMT.WebApp.DAL.App_Code;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,7 +12,7 @@ namespace HMT.WebApp.BLL.App_Code
         // Passes email and password to the DAL for verification of a login and returns whether user login was successful or not
         public int CheckLogin(string email, string pass)
         {
-            int check = control.Read(email, pass);
+            int check = control.SignIn(email, pass);
 
             return check; 
         }
@@ -60,7 +61,6 @@ namespace HMT.WebApp.BLL.App_Code
         {
             control.update(change);
         }
-
 
         // String builder tables
         // returns the customer records in a table format
@@ -139,16 +139,14 @@ namespace HMT.WebApp.BLL.App_Code
 
         public void AddToCartItems(int productID, int customerID) //INCOMPLETE
         {
-            int cartID = -1;
             // Get customer's cartID from their customerID.
-            cartID = control.FindCartID(customerID);
+            int cartID = control.FindCartID(customerID);
 
             // Call DAL to insert into database. If statement guards against error cases.
             if (cartID != -1)
             {
                 control.InsertCartItem(productID, cartID);
             }
-             
         }
     }
 }

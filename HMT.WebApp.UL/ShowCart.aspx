@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master_Pages/Default.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="HMT.WebApp.UL.Cart" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master_Pages/Default.Master" AutoEventWireup="true" CodeBehind="ShowCart.aspx.cs" Inherits="HMT.WebApp.UL.ShowCart" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/StraightBody.css" />
     <link rel="stylesheet" type="text/css" href="CSS/General.css" />

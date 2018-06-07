@@ -10,7 +10,7 @@
 namespace HMT.WebApp.UL {
     
     
-    public partial class Cart {
+    public partial class ShowCart {
         
         /// <summary>
         /// rmvFromCart control.

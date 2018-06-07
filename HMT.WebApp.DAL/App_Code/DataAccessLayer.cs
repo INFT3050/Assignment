@@ -11,11 +11,11 @@ namespace HMT.WebApp.DAL.App_Code
 {
     public class DataAccessLayer
     {
+        DateTime current;
         private string ConString = WebConfigurationManager.ConnectionStrings["HMTconnect"].ConnectionString;
         SqlConnection con = new SqlConnection();
         
 
-        
         public Customer find(int num = -1, string email = "")
         {
             con.ConnectionString = ConString;
@@ -85,10 +85,10 @@ namespace HMT.WebApp.DAL.App_Code
             return product;
         }
 
-        // Read(string email, string pass)
+        // SignIn(string email, string pass)
         // Checks if there is a customer in the database with correct email and password
         // returns 0 for nothing detected, 1 for correct email and 2 for both correct, therefore login, 3 for suspended account, 4 for admin privileges.
-        public int Read(string email, string pass)
+        public int SignIn(string email, string pass)
         {
             con.ConnectionString = ConString;
             if (ConnectionState.Closed == con.State)
@@ -108,15 +108,15 @@ namespace HMT.WebApp.DAL.App_Code
 
             rd.Close();
             cmd = new SqlCommand("select * from Client", con);
-            rd = cmd.ExecuteReader();
+            SqlDataReader ce = cmd.ExecuteReader();
 
-            while (rd.Read())
+            while (ce.Read())
             {
-                if (rd.GetString(3) == email)
+                if (ce.GetString(3) == email)
                 {
-                    int ID = rd.GetInt32(0);
+                    int ID = ce.GetInt32(0);
 
-                    if (rd.GetBoolean(5))
+                    if (ce.GetBoolean(5))
                     {
                         con.Close();
                         return 3;
@@ -124,14 +124,41 @@ namespace HMT.WebApp.DAL.App_Code
 
                     //sql command to search for customer with the ID specified
                     cmd = new SqlCommand("select * from ClientPassword where ClientID = " + ID + "", con);
-                    rd.Close();
+                    ce.Close();
                     SqlDataReader pa = cmd.ExecuteReader();
 
                     if (pa.Read() && pa.GetString(2) == pass)
                     {
                         pa.Close();
-                        con.Close();
-                        return 2;
+
+                        cmd = new SqlCommand("select * from ShoppingCart where ClientID = " + ID + "", con);
+                        SqlDataReader ca = cmd.ExecuteReader();
+                        if (ca.HasRows)
+                        {
+                            //sets datetime to current time on system.
+                            current = DateTime.Now;
+                            while (ca.Read())
+                            {
+                                if (ca.GetDateTime(2).CompareTo(current) < 0 /* && IsValid*/)
+                                {
+                                    con.Close();
+                                    return 2;
+                                }
+                            }
+                        }
+                    
+                        else
+                        {
+                            cmd = new SqlCommand("INSERT INTO ShoppingCart VALUES (@ClientID,@DateCreated,@IsValid)", con);
+                            cmd.Parameters.AddWithValue("@ClientID", ID);
+                            cmd.Parameters.AddWithValue("@DateCreated", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@IsValid", 1);
+                            ca.Close();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            return 2;
+                        }
+
                     }
                     else
                     {
@@ -340,13 +367,15 @@ namespace HMT.WebApp.DAL.App_Code
             try
             {
                 // Insert new row into table CartItems.
-                SqlCommand cmd = new SqlCommand("INSERT INTO CartItems VALUES (@ProductID,@Quantity,@CartID)", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO CartItems VALUES (@ProductID,@Quantity,@CartID,@IsValid)", con);
                 cmd.Parameters.AddWithValue("@ProductID", ProductID);
                 cmd.Parameters.AddWithValue("@Quantity", Quantity);
                 cmd.Parameters.AddWithValue("@CartID", CartID);
+                cmd.Parameters.AddWithValue("@IsValid", 1);
+
                 cmd.ExecuteNonQuery();
             }
-            catch { }
+            catch { throw; }
         }
 
         public void InsertCartItem(int ProductID, int CartID)
@@ -356,7 +385,7 @@ namespace HMT.WebApp.DAL.App_Code
                 con.Open();
             try
             {
-                int currentQuantity = 0; 
+                int currentQuantity = 0;
                 SqlCommand cmd = new SqlCommand("SELECT * FROM CartItems", con);
                 SqlDataReader rd = cmd.ExecuteReader();
 
@@ -364,10 +393,10 @@ namespace HMT.WebApp.DAL.App_Code
                 bool quantityFound = false;
                 while (rd.Read())
                 {
-                    if (rd.GetInt32(0) == ProductID && rd.GetInt32(2) == CartID)
+                    if (rd.GetInt32(1) == ProductID && rd.GetInt32(3) == CartID)
                     {
                         if (rd.GetSqlBoolean(4).Equals(0)) { currentQuantity = 0; }
-                        else { currentQuantity = rd.GetInt32(1);}
+                        else { currentQuantity = rd.GetInt32(2);}
                         
                         quantityFound = true;
                         break;
@@ -388,10 +417,11 @@ namespace HMT.WebApp.DAL.App_Code
                 // If no current quantity was found, then insert a new row into table CartItem.
                 else
                 {
+                    con.Close();
                     InsertCartItem(ProductID, 1, CartID);
                 }
             }
-            catch { }
+            catch { throw;  }
         }
 
         public void RemoveCartItem (int ProductID, int CartID)
@@ -466,18 +496,22 @@ namespace HMT.WebApp.DAL.App_Code
 
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT CartID FROM ShoppingCart WHERE CustomerID = @custID", con);
-                cmd.Parameters.AddWithValue("@custID", customerID);
+                SqlCommand cmd = new SqlCommand("SELECT CartID FROM ShoppingCart WHERE ClientID = @ClientID", con);
+                cmd.Parameters.AddWithValue("@ClientID", customerID);
                 SqlDataReader rd = cmd.ExecuteReader();
 
            
                 while (rd.Read()) 
                 {
+                    
+
+                    int val = rd.GetInt32(0);
                     con.Close();
-                    return (int)rd.GetInt32(0);
+                    rd.Close();
+                    return val;
                 }
             }
-            catch { }
+            catch { throw;  }
             return -1;  // This should only occur if there is an error within the Try-Catch block, there is no soft-fail option available.
         }
     }
