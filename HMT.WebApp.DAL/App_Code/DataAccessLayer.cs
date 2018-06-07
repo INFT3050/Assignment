@@ -331,6 +331,154 @@ namespace HMT.WebApp.DAL.App_Code
             return products;
         }
 
-        
+        public void InsertCartItem(int ProductID, int Quantity, int CartID)
+        {
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+
+            try
+            {
+                // Insert new row into table CartItems.
+                SqlCommand cmd = new SqlCommand("INSERT INTO CartItems VALUES (@ProductID,@Quantity,@CartID)", con);
+                cmd.Parameters.AddWithValue("@ProductID", ProductID);
+                cmd.Parameters.AddWithValue("@Quantity", Quantity);
+                cmd.Parameters.AddWithValue("@CartID", CartID);
+                cmd.ExecuteNonQuery();
+            }
+            catch { }
+        }
+
+        public void InsertCartItem(int ProductID, int CartID)
+        {
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+            try
+            {
+                int currentQuantity = 0; 
+                SqlCommand cmd = new SqlCommand("SELECT * FROM CartItems", con);
+                SqlDataReader rd = cmd.ExecuteReader();
+
+                // Search CartItems table and find the quantity of the selected item matching both cartID and productID.
+                bool quantityFound = false;
+                while (rd.Read())
+                {
+                    if (rd.GetInt32(0) == ProductID && rd.GetInt32(2) == CartID)
+                    {
+                        if (rd.GetSqlBoolean(4).Equals(0)) { currentQuantity = 0; }
+                        else { currentQuantity = rd.GetInt32(1);}
+                        
+                        quantityFound = true;
+                        break;
+                    }
+                }
+                rd.Close();
+
+                // If an existing quantity is found then update the current quantity.
+                if (quantityFound == true)
+                {
+                    cmd = new SqlCommand("UPDATE CartItems SET Quantity = @Quantity WHERE (ProductID = @ProductID AND CartID = @CartID)", con);
+                    cmd.Parameters.AddWithValue("@ProductID", ProductID);
+                    cmd.Parameters.AddWithValue("@Quantity", currentQuantity + 1);  // Increments the quantity.
+                    cmd.Parameters.AddWithValue("@CartID", CartID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                // If no current quantity was found, then insert a new row into table CartItem.
+                else
+                {
+                    InsertCartItem(ProductID, 1, CartID);
+                }
+            }
+            catch { }
+        }
+
+        public void RemoveCartItem (int ProductID, int CartID)
+        {
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+            try
+            {
+                
+                SqlCommand cmd = new SqlCommand("SELECT * FROM CartItems", con);
+                SqlDataReader rd = cmd.ExecuteReader();
+
+                // Soft deletes CartItems by setting isActive to 0 (false).
+                cmd = new SqlCommand("UPDATE CartItems SET isActive = 0 WHERE (ProductID = @ProductID AND CartID = @CartID)", con);
+                cmd.Parameters.AddWithValue("@ProductID", ProductID);
+                cmd.Parameters.AddWithValue("@CartID", CartID);
+                cmd.ExecuteNonQuery();
+                
+            }
+            catch { }
+        }
+
+        public void ReduceCartItemQuantity(int ProductID, int CartID)
+        {
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+            try
+            {
+                int currentQuantity = 0;
+                SqlCommand cmd = new SqlCommand("SELECT * FROM CartItems", con);
+                SqlDataReader rd = cmd.ExecuteReader();
+
+                // Search CartItems table and find the quantity of the selected item matching both cartID and productID.
+                bool quantityFound = false;
+                while (rd.Read())
+                {
+                    if (rd.GetInt32(0) == ProductID && rd.GetInt32(2) == CartID)
+                    {
+                        currentQuantity = rd.GetInt32(1);
+                        quantityFound = true;
+                        break;
+                    }
+                }
+                rd.Close();
+
+                // If an existing quantity is found then update the current quantity.
+                if (quantityFound == true)
+                {
+                    cmd = new SqlCommand("UPDATE CartItems SET Quantity = @Quantity WHERE (ProductID = @ProductID AND CartID = @CartID)", con);
+                    cmd.Parameters.AddWithValue("@ProductID", ProductID);
+                    cmd.Parameters.AddWithValue("@Quantity", currentQuantity - 1);  // Decrements the quantity.
+                    cmd.Parameters.AddWithValue("@CartID", CartID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                // If no current quantity was found, then soft delete the item from the table.
+                else
+                {
+                    RemoveCartItem(ProductID, CartID);
+                }
+            }
+            catch { }
+        }
+
+        public int FindCartID (int customerID)
+        {
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SELECT CartID FROM ShoppingCart WHERE CustomerID = @custID", con);
+                cmd.Parameters.AddWithValue("@custID", customerID);
+                SqlDataReader rd = cmd.ExecuteReader();
+
+           
+                while (rd.Read()) 
+                {
+                    con.Close();
+                    return (int)rd.GetInt32(0);
+                }
+            }
+            catch { }
+            return -1;  // This should only occur if there is an error within the Try-Catch block, there is no soft-fail option available.
+        }
     }
 }

@@ -136,5 +136,19 @@ namespace HMT.WebApp.BLL.App_Code
 
             return table;
         }
+
+        public void AddToCartItems(int productID, int customerID) //INCOMPLETE
+        {
+            int cartID = -1;
+            // Get customer's cartID from their customerID.
+            cartID = control.FindCartID(customerID);
+
+            // Call DAL to insert into database. If statement guards against error cases.
+            if (cartID != -1)
+            {
+                control.InsertCartItem(productID, cartID);
+            }
+             
+        }
     }
 }
