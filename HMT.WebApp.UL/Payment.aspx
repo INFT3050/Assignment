@@ -12,7 +12,7 @@
                   <fieldset>
                     <legend>Personal information:</legend>
                     First name:<br>
-                    <input type="text" name="firstname" value="Dean" required><br>
+                    <input type="text" runat="server" id="fname" name="firstname" value="Dean" required><br>
                     Last name:<br>
                     <input type="text" name="lastname" value="Morton" required><br><br>
                   </fieldset>
@@ -20,14 +20,15 @@
                     <fieldset>
                     <legend>Delivery Address:</legend>
                     Street number<br>
-                    <input type="number" name="street" value="223"  required><br>
+                    <input type="number" runat="server" id="street" name="streetNo" value="223"  required><br>
                     Street Name<br>
-                    <input type="text" name="name" value="Round Lane" required><br>
-                      Town<br>
-                    <input type="text" name="town" value="Hogwarts" required><br>
-                    Post Code
+                    <input type="text" runat="server"  id="road" name="street" value="Round Lane" required><br>
+                        Town
+                      <br>
+                    <input type="text" runat="server"  id="town" name="town" value="Hogwarts" required><br>
+                    Post Code  
                     <br>
-                    <input type="number" name="postCode" value="2265" required><br>
+                    <input type="number" runat="server" id="postcode"  name="postCode" value="2265" required><br>
                          <br>
       
                   </fieldset>
@@ -35,17 +36,17 @@
                      <fieldset>
                     <legend>Credit Card information:</legend>
                     Card Number:<br>
-                    <input type="number" name="cardNumber" value="233456565" required><br>
+                    <input type="number" id="cardNo" name="cardNumber" value="2334565655552222" required><br>
                     Expiration Date:<br>
-                    <input type="date" name="date" required><br>
+                    <input type="date" id="date" name="date" required><br>
                       CVV number<br>
-                    <input type="number" name="date" value="999" required><br>    
+                    <input type="number" id="code" name="CVV" value="999" required><br>    
                          <br>
 
-                         Your total is: $<%:Session["total"]%>
+                         Your total is: <b>$<%:Session["Total"]%></b>
                     
                   </fieldset>
-                    <asp:Button ID="submit" runat="server" text="Pay Now" OnClick="submit_Click"/>
+                    <asp:Button ID="pay" runat="server" text="Pay Now" OnClick="submit_Click"/>
             <br />
             <br />
                     

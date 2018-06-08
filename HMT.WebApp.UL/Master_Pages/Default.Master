@@ -39,7 +39,7 @@
                     <a href="../Account.aspx"><img alt="account" title="My Account" src="images/person.jpg"/></a>
             </div>  
             <div class="quickLinks">
-                    <a href="../Wishlist.aspx"><img alt="wishlist" title="My Wishlist" src="images/wishlist.jpg" /></a>
+                    <a href="../Wishlist.aspx"><img alt="wishlist" title="My History" src="images/history.jpg" /></a>
             </div>
             <div class="quickLinks">                
                     <a href="../ShowCart.aspx"><img alt="cart" title="My Shopping Cart" src="images/cart2.png" /></a>

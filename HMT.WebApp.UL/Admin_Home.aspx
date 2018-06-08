@@ -4,5 +4,5 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="contentplaceholder1" runat="server">
     <!-- Admins home page where they can edit customers and add/remove products -->
 
-    <p>admin home</p>
+    Please use the links to the side to access Admin features.
 </asp:Content>

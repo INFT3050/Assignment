@@ -24,9 +24,7 @@
 
             <div class="flexContainer">
                 <div class="flexRight">
-                    <a href="Payment.aspx">
-                    proceed to payment
-                     </a>
+                    <asp:Button ID="pay" runat="server" text="Proceed to Payment" OnClick="submit_Click"/>
                 </div>
                 
             </div>

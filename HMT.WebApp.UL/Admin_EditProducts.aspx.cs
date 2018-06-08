@@ -60,7 +60,12 @@ namespace HMT.WebApp.UL
 
         protected void suspend_Click(object sender, EventArgs e)
         {
+            Product temp = new Product();
 
+
+            temp = cust.getProduct(Convert.ToInt32(search.Text));
+            cust.suspendProduct(temp);
+            Response.Redirect("Admin_EditCustomer.aspx");
         }
 
         protected void update_Click(object sender, EventArgs e)
@@ -77,7 +82,21 @@ namespace HMT.WebApp.UL
 
             cust.updateProduct(product);
             Response.Redirect("Admin_EditProducts.aspx");
+        }
 
+        protected void insert_Click(object sender, EventArgs e)
+        {
+            Product product = new Product();
+
+            product.name = addName.Text;
+            product.description = addDescription.Text;
+            product.size = addSize.Text;
+            product.price = Convert.ToDecimal(addPrice.Text);
+            product.image = addImage.Text;
+            product.gender = addGender.Text;
+
+            cust.insertProduct(product);
+            Response.Redirect("Admin_EditProducts.aspx");
         }
     }
 }

@@ -10,24 +10,15 @@
 namespace HMT.WebApp.UL {
     
     
-    public partial class Wishlist {
+    public partial class Admin_ViewTransactions {
         
         /// <summary>
-        /// addToCart control.
+        /// placeTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addToCart;
-        
-        /// <summary>
-        /// rmvWishlist control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button rmvWishlist;
+        protected global::System.Web.UI.WebControls.PlaceHolder placeTable;
     }
 }

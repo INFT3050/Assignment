@@ -135,11 +135,9 @@ namespace HMT.WebApp.DAL.App_Code
                         SqlDataReader ca = cmd.ExecuteReader();
                         if (ca.HasRows)
                         {
-                            //sets datetime to current time on system.
-                            current = DateTime.Now;
                             while (ca.Read())
                             {
-                                if (ca.GetDateTime(2).CompareTo(current) < 0 /* && IsValid*/)
+                                if (ca.GetBoolean(3))
                                 {
                                     con.Close();
                                     return 2;
@@ -183,12 +181,11 @@ namespace HMT.WebApp.DAL.App_Code
             try
             {
                 //Sql commands for adding a new customer into the database
-                SqlCommand cmd = new SqlCommand("INSERT INTO Client VALUES (@FirstName,@LastName,@Email,@CustomerAddress,@suspended)", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Client VALUES (@FirstName,@LastName,@Email,@CustomerAddress,0)", con);
                 cmd.Parameters.AddWithValue("@FirstName", Fname);
                 cmd.Parameters.AddWithValue("@LastName", lName);
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@CustomerAddress", address);
-                cmd.Parameters.AddWithValue("@suspended", '0');
 
                 cmd.ExecuteNonQuery();
 
@@ -213,7 +210,31 @@ namespace HMT.WebApp.DAL.App_Code
 
                 cmd.ExecuteNonQuery();
             }
-            catch { }
+            catch { throw; }
+        }
+
+
+        public void InsertProduct(Product pro)
+        {
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+
+            try
+            {
+                //Sql commands for adding a new customer into the database
+                SqlCommand cmd = new SqlCommand("INSERT INTO Product VALUES (@name,@description,@size,@price,@image,@gender,1)", con);
+                cmd.Parameters.AddWithValue("@name", pro.name);
+                cmd.Parameters.AddWithValue("@description", pro.description);
+                cmd.Parameters.AddWithValue("@size", pro.size);
+                cmd.Parameters.AddWithValue("@price", pro.price);
+                cmd.Parameters.AddWithValue("@image", pro.image);
+                cmd.Parameters.AddWithValue("@gender", pro.gender);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch { throw; }
         }
 
         //returns all customers in a List
@@ -303,6 +324,25 @@ namespace HMT.WebApp.DAL.App_Code
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
+        }
+
+        public void suspendProduct(Product product)
+        {
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE Product SET IsActive = @suspended WHERE (ProductID = '" + product.id + "')", con);
+                if (!product.isActive)
+                    cmd.Parameters.AddWithValue("@suspended", '1');
+                else
+                    cmd.Parameters.AddWithValue("@suspended", '0');
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch { throw; }
         }
 
         public void suspend(Customer person)
@@ -395,9 +435,7 @@ namespace HMT.WebApp.DAL.App_Code
                 {
                     if (rd.GetInt32(1) == ProductID && rd.GetInt32(3) == CartID)
                     {
-                        if (rd.GetSqlBoolean(4).Equals(0)) { currentQuantity = 0; }
-                        else { currentQuantity = rd.GetInt32(2);}
-                        
+                        currentQuantity = rd.GetInt32(2);
                         quantityFound = true;
                         break;
                     }
@@ -407,7 +445,7 @@ namespace HMT.WebApp.DAL.App_Code
                 // If an existing quantity is found then update the current quantity.
                 if (quantityFound == true)
                 {
-                    cmd = new SqlCommand("UPDATE CartItems SET Quantity = @Quantity WHERE (ProductID = @ProductID AND CartID = @CartID)", con);
+                    cmd = new SqlCommand("UPDATE CartItems SET Quantity = @Quantity, IsActive = 1 WHERE (ProductID = @ProductID AND CartID = @CartID)", con);
                     cmd.Parameters.AddWithValue("@ProductID", ProductID);
                     cmd.Parameters.AddWithValue("@Quantity", currentQuantity + 1);  // Increments the quantity.
                     cmd.Parameters.AddWithValue("@CartID", CartID);
@@ -430,63 +468,15 @@ namespace HMT.WebApp.DAL.App_Code
             if (ConnectionState.Closed == con.State)
                 con.Open();
             //try
-            
-                
-                SqlCommand cmd = new SqlCommand("SELECT * FROM CartItems", con);
-                SqlDataReader rd = cmd.ExecuteReader();
 
                 // Soft deletes CartItems by setting isActive to 0 (false).
-                cmd = new SqlCommand("UPDATE CartItems SET IsActive = 0, Quantity = 0 WHERE (ProductID = @ProductID AND CartID = @CartID)", con);
+                SqlCommand cmd = new SqlCommand("UPDATE CartItems SET IsActive = 0, Quantity = 0 WHERE (ProductID = @ProductID AND CartID = @CartID)", con);
                 cmd.Parameters.AddWithValue("@ProductID", ProductID);
                 cmd.Parameters.AddWithValue("@CartID", CartID);
-                rd.Close();
                 cmd.ExecuteNonQuery();
                 con.Close();
             
             //catch { }
-        }
-
-        public void ReduceCartItemQuantity(int ProductID, int CartID)
-        {
-            con.ConnectionString = ConString;
-            if (ConnectionState.Closed == con.State)
-                con.Open();
-            try
-            {
-                int currentQuantity = 0;
-                SqlCommand cmd = new SqlCommand("SELECT * FROM CartItems", con);
-                SqlDataReader rd = cmd.ExecuteReader();
-
-                // Search CartItems table and find the quantity of the selected item matching both cartID and productID.
-                bool quantityFound = false;
-                while (rd.Read())
-                {
-                    if (rd.GetInt32(0) == ProductID && rd.GetInt32(2) == CartID)
-                    {
-                        currentQuantity = rd.GetInt32(1);
-                        quantityFound = true;
-                        break;
-                    }
-                }
-                rd.Close();
-
-                // If an existing quantity is found then update the current quantity.
-                if (quantityFound == true)
-                {
-                    cmd = new SqlCommand("UPDATE CartItems SET Quantity = @Quantity WHERE (ProductID = @ProductID AND CartID = @CartID)", con);
-                    cmd.Parameters.AddWithValue("@ProductID", ProductID);
-                    cmd.Parameters.AddWithValue("@Quantity", currentQuantity - 1);  // Decrements the quantity.
-                    cmd.Parameters.AddWithValue("@CartID", CartID);
-                    cmd.ExecuteNonQuery();
-                }
-
-                // If no current quantity was found, then soft delete the item from the table.
-                else
-                {
-                    RemoveCartItem(ProductID, CartID);
-                }
-            }
-            catch { }
         }
 
         public int FindCartID (int customerID)
@@ -497,9 +487,8 @@ namespace HMT.WebApp.DAL.App_Code
 
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT CartID FROM ShoppingCart WHERE (ClientID = @ClientID AND IsActive = @IsActive)", con);
+                SqlCommand cmd = new SqlCommand("SELECT CartID FROM ShoppingCart WHERE (ClientID = @ClientID AND IsActive = 1)", con);
                 cmd.Parameters.AddWithValue("@ClientID", customerID);
-                cmd.Parameters.AddWithValue("@IsActive", 1);
                 SqlDataReader rd = cmd.ExecuteReader();
 
            
@@ -527,7 +516,7 @@ namespace HMT.WebApp.DAL.App_Code
 
             //try
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM CartItems WHERE (CartID = @CartID)", con);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM CartItems WHERE (CartID = @CartID AND IsActive = 1)", con);
                 cmd.Parameters.AddWithValue("@CartID", cartID);
                 SqlDataReader rd = cmd.ExecuteReader();
 
@@ -548,5 +537,63 @@ namespace HMT.WebApp.DAL.App_Code
             }
             //catch { throw; }
         }
+
+        public void makePayment(int cartID, int custID)
+        {
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+
+            // removes active cart
+            SqlCommand cmd = new SqlCommand("UPDATE ShoppingCart SET IsActive = 0, DateCreated =" + DateTime.Now + " WHERE CartID = " + cartID, con);
+            cmd.ExecuteNonQuery();
+
+            cmd = new SqlCommand("INSERT INTO ShoppingCart VALUES (@ClientID,@DateCreated,1)", con);
+            cmd.Parameters.AddWithValue("@ClientID", custID);
+            cmd.Parameters.AddWithValue("@DateCreated", DateTime.Now);
+            cmd.ExecuteNonQuery();
+
+            cmd = new SqlCommand("INSERT INTO Payment VALUES (@DateCreated,@CartID)", con);
+            cmd.Parameters.AddWithValue("@DateCreated", DateTime.Now);
+            cmd.Parameters.AddWithValue("@CartID", cartID);
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+        }
+
+
+        /*
+        public List<Payment> getTransactions(int cartID)
+        {
+            List<Payment> trans = new List<Payment>();
+
+            con.ConnectionString = ConString;
+            if (ConnectionState.Closed == con.State)
+                con.Open();
+
+            SqlCommand cmd = new SqlCommand("select * from ShoppingCart where ClientID = " + custID, con);
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            if (rd.HasRows)
+            {
+                while (rd.Read())
+                {
+                    Payment temp = new Payment();
+                    temp.id = Convert.ToInt32(rd[0]);
+                    temp.firstName = rd[1].ToString();
+                    temp.date = rd[2]();
+                    temp.email = rd[3].ToString();
+                    temp.address = rd[4].ToString();
+                    temp.suspended = rd.GetBoolean(5);
+                    trans.Add(temp);
+                }
+            }
+
+            rd.Close();
+            con.Close();
+
+            return trans;
+
+        }*/
     }
 }

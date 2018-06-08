@@ -7,12 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace HMT.WebApp.UL
 {
-    public partial class Wishlist : System.Web.UI.Page
+    public partial class PaymentSent : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["firstName"].ToString() == "-1" || Session["firstName"].ToString() == "")
-                Response.Redirect("Sign_In.aspx");
+
         }
     }
 }

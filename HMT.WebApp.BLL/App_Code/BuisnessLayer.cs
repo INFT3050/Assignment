@@ -8,6 +8,7 @@ namespace HMT.WebApp.BLL.App_Code
     public class BuisnessLayer
     {
         DataAccessLayer control = new DataAccessLayer();
+        public decimal totalCost { get; set; }
 
         // Passes email and password to the DAL for verification of a login and returns whether user login was successful or not
         public int CheckLogin(string email, string pass)
@@ -16,6 +17,28 @@ namespace HMT.WebApp.BLL.App_Code
 
             return check; 
         }
+        /*
+        public StringBuilder getTransactions(int custID)
+        {
+            StringBuilder table = new StringBuilder();
+            List<Payment> trans = control.getTransaction(custID);
+
+            table.Append("<table border='1'>");
+            table.Append("<tr><th>CartID</th><th>Date of Transaction</th><th>Total Cost</th>");
+            table.Append("</tr>");
+
+            foreach (var item in trans)
+            {
+                table.Append("<tr>");
+                table.Append("<td>" + item.id + "</td>");
+                table.Append("<td>" + item.firstName + "</td>");
+                table.Append("<td>" + item.lastName + "</td>");
+            }
+
+            table.Append("</table>");
+
+            return table;
+        }*/
 
         // Passes a Customer to the DAL for insertion into the database
         public void CreateCustomer(string Fname, string lName, string email, string pass, string address)
@@ -42,6 +65,11 @@ namespace HMT.WebApp.BLL.App_Code
             return person;
         }
 
+        public void insertProduct(Product pro)
+        {
+            control.InsertProduct(pro);
+        }
+
         public void updateChanges(Customer person, string email)
         {
             control.update(person, email);
@@ -51,6 +79,11 @@ namespace HMT.WebApp.BLL.App_Code
         {
             control.suspend(person);
         }
+
+        public void suspendProduct(Product pro)
+        {
+            control.suspendProduct(pro);
+        } 
 
         public Product getProduct(int id)
         {
@@ -130,6 +163,7 @@ namespace HMT.WebApp.BLL.App_Code
                 table.Append("<td>" + item.price + "</td>");
                 table.Append("<td>" + item.image + "</td>");
                 table.Append("<td>" + item.gender + "</td>");
+                table.Append("<td>" + item.isActive + "</td>");
             }
 
             table.Append("</table>");
@@ -149,10 +183,14 @@ namespace HMT.WebApp.BLL.App_Code
             }
         }
 
-        public void RemoveItemFromCart(int btn, int custID)
+        public void RemoveItemFromCart(int custID, int productID)
         {
-            int cartID = control.FindCartID(custID);
-            control.RemoveCartItem(btn ,cartID);
+            control.RemoveCartItem(productID ,control.FindCartID(custID));
+        }
+
+        public int getCartID(int custID)
+        {
+            return control.FindCartID(custID);
         }
 
         public StringBuilder getCart(int custID)
@@ -177,8 +215,46 @@ namespace HMT.WebApp.BLL.App_Code
                 total = total + itemP.quantity*item.price;
             }
             table.Append("<h2>Total: $" + total + "</h2>");
+            this.totalCost = total;
 
             return table;
+        }
+
+        public StringBuilder getTransaction()
+        {
+            StringBuilder table = new StringBuilder();
+            List<Product> carts = control.queryProducts("select * from ShoppingCart");
+
+            table.Append("<table border='1'>");
+            table.Append("<tr><th>CartID</th><th>Customer ID</th><th>Date of Transaction</th><th>Total Cost</th>");
+            table.Append("</tr>");
+
+            foreach (var item in carts)
+            {
+                table.Append("<tr>");
+                table.Append("<td>" + item.id + "</td>");
+                table.Append("<td>" + item.name + "</td>");
+                table.Append("<td>" + item.description + "</td>");
+                table.Append("<td>" + item.size + "</td>");
+                table.Append("<td>" + item.price + "</td>");
+                table.Append("<td>" + item.image + "</td>");
+                table.Append("<td>" + item.gender + "</td>");
+                table.Append("<td>" + item.isActive + "</td>");
+            }
+
+            table.Append("</table>");
+
+            return table;
+        }
+
+        public void makePayment(int cartid, int custID)
+        {
+            control.makePayment(cartid, custID);
+        }
+
+        public List<Item> getItemsFromCart(int cartID)
+        {
+            return control.getCart(cartID).products;
         }
     }
 }

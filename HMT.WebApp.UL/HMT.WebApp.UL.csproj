@@ -125,8 +125,9 @@
     <Content Include="Account.aspx" />
     <Content Include="Admin_EditCustomer.aspx" />
     <Content Include="Admin_EditProducts.aspx" />
-    <Content Include="Admin_EditTransactions.aspx" />
+    <Content Include="Admin_ViewTransactions.aspx" />
     <Content Include="Admin_Home.aspx" />
+    <Content Include="PaymentSent.aspx" />
     <Content Include="ShowCart.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="CSS\Admin.css" />
@@ -177,7 +178,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Wishlist.aspx" />
+    <Content Include="History.aspx" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
@@ -230,12 +231,12 @@
     <Compile Include="Admin_EditProducts.aspx.designer.cs">
       <DependentUpon>Admin_EditProducts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin_EditTransactions.aspx.cs">
-      <DependentUpon>Admin_EditTransactions.aspx</DependentUpon>
+    <Compile Include="Admin_ViewTransactions.aspx.cs">
+      <DependentUpon>Admin_ViewTransactions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin_EditTransactions.aspx.designer.cs">
-      <DependentUpon>Admin_EditTransactions.aspx</DependentUpon>
+    <Compile Include="Admin_ViewTransactions.aspx.designer.cs">
+      <DependentUpon>Admin_ViewTransactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin_Home.aspx.cs">
       <DependentUpon>Admin_Home.aspx</DependentUpon>
@@ -243,6 +244,13 @@
     </Compile>
     <Compile Include="Admin_Home.aspx.designer.cs">
       <DependentUpon>Admin_Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSent.aspx.cs">
+      <DependentUpon>PaymentSent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentSent.aspx.designer.cs">
+      <DependentUpon>PaymentSent.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShowCart.aspx.cs">
       <DependentUpon>ShowCart.aspx</DependentUpon>
@@ -367,12 +375,12 @@
     <Compile Include="StoreLocations.aspx.designer.cs">
       <DependentUpon>StoreLocations.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Wishlist.aspx.cs">
-      <DependentUpon>Wishlist.aspx</DependentUpon>
+    <Compile Include="History.aspx.cs">
+      <DependentUpon>History.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Wishlist.aspx.designer.cs">
-      <DependentUpon>Wishlist.aspx</DependentUpon>
+    <Compile Include="History.aspx.designer.cs">
+      <DependentUpon>History.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -48,6 +48,7 @@ namespace HMT.WebApp.UL
 
                 //finally add the remainder of the raw_html
                 placeTable.Controls.Add(new Literal { Text = raw_html });
+                Session["Total"] = cust.totalCost;
             }
         }
 
@@ -56,6 +57,14 @@ namespace HMT.WebApp.UL
             Button btn = (Button)sender;
             cust.RemoveItemFromCart(Convert.ToInt32(Session["ID"]) , Convert.ToInt32(btn.CommandArgument));
             Response.Redirect("ShowCart.aspx");
+        }
+
+        protected void submit_Click(object sender, EventArgs e)
+        {
+            if(Session["Total"].ToString() == "0")
+                {  }
+            else
+                Response.Redirect("Payment.aspx");
         }
     }
 }

@@ -14,5 +14,6 @@ namespace HMT.WebApp.DAL.App_Code
         public decimal price { get; set; }
         public string image { get; set; }
         public string gender { get; set; }
+        public bool isActive { get; set; }
     }
 }

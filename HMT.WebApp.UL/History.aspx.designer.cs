@@ -10,7 +10,7 @@
 namespace HMT.WebApp.UL {
     
     
-    public partial class ShowCart {
+    public partial class History {
         
         /// <summary>
         /// placeTable control.
@@ -20,14 +20,5 @@ namespace HMT.WebApp.UL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder placeTable;
-        
-        /// <summary>
-        /// pay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button pay;
     }
 }

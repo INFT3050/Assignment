@@ -7,7 +7,7 @@
     <asp:Panel runat="server" DefaultButton="searchID"> 
     <div style="margin-left:20px; margin-top:20px">
         <!-- Update and delete section for editing customer records -->
-            <h3>Update/Delete Products:</h3>
+            <h3>Update/Suspend Products:</h3>
             <asp:TextBox ID="search" runat="server" placeholder="Enter ID" CssClass="inputTxt alignVert" onfocus="reveal(this);" onblur="hide(this)"></asp:TextBox>
             <asp:Button id="searchID" runat="server" Text="Go" OnClick="searchID_Click"/>
             <asp:Label CssClass="msgLbl" ID="msgLbl" runat="server" BorderStyle="None"></asp:Label>
@@ -33,6 +33,22 @@
             <asp:PlaceHolder ID="placeTable" runat="server"></asp:PlaceHolder>
         </div>
         
+    </div>
+
+
+    <!-- add products -->
+    <div >
+        <h2> Add a Product </h2>
+        <asp:TextBox CssClass="inputTxt" ID="addName" placeholder="Name" runat="server" TabIndex="1"></asp:TextBox>
+        <asp:TextBox CssClass="inputTxt" ID="addDescription" placeholder="Description" runat="server" TabIndex="2" TextMode="MultiLine"></asp:TextBox>
+        <asp:TextBox CssClass="inputTxt" ID="addSize" placeholder="Size" runat="server" TabIndex="3"></asp:TextBox>
+        <asp:TextBox CssClass="inputTxt" ID="addPrice" placeholder="Price" runat="server" TabIndex="4"></asp:TextBox>
+        <asp:TextBox CssClass="inputTxt" ID="addImage" Text="Images/" runat="server" TabIndex="5"></asp:TextBox>
+        <asp:DropDownList ID="addGender" runat="server">
+            <asp:ListItem Text="Male" Value="M"></asp:ListItem>
+            <asp:ListItem Text="Female" Value="F"></asp:ListItem>
+        </asp:DropDownList>
+        <asp:Button id="insert" runat="server" Text="Insert" OnClick="insert_Click"/>
     </div>
 
 

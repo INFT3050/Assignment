@@ -83,6 +83,7 @@
     <Compile Include="App_Code\Item.cs" />
     <Compile Include="App_Code\Customer.cs" />
     <Compile Include="App_Code\DataAccessLayer.cs" />
+    <Compile Include="App_Code\Payment.cs" />
     <Compile Include="App_Code\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
